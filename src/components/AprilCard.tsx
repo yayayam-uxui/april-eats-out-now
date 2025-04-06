@@ -11,9 +11,8 @@ interface AprilCardProps {
 }
 
 const AprilCard: React.FC<AprilCardProps> = ({ restaurant, onTryAgain }) => {
-  const characterImage = restaurant.character ? 
-    getCharacterImage(restaurant.category) : 
-    getCharacterImage('default');
+  // Use the character field from the restaurant data to get the appropriate image
+  const characterImage = getCharacterImage(restaurant.character);
 
   return (
     <div className="april-card flex flex-col gap-6 mx-auto">
