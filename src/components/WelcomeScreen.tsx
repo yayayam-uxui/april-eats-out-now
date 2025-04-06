@@ -23,7 +23,7 @@ const WelcomeScreen: React.FC<WelcomeScreenProps> = ({
   onCityChange 
 }) => {
   return (
-    <div className="flex flex-col items-center justify-center text-center gap-8 w-full max-w-md mx-auto pt-6">
+    <div className="flex flex-col items-center justify-center text-center gap-8 w-full max-w-md mx-auto pt-6 pb-24">
       <div className="flex flex-col items-center">
         {/* Logo with link to Apricot Labs website */}
         <a 
@@ -54,12 +54,12 @@ const WelcomeScreen: React.FC<WelcomeScreenProps> = ({
           <p className="text-lg text-center">מאיפה את או איפה בא לך לאכול היום?</p>
         
           {/* City dropdown */}
-          <div className="mt-4">
+          <div className="mt-4 mb-2">
             <Select value={selectedCity} onValueChange={onCityChange}>
               <SelectTrigger dir="rtl" className="w-full text-right">
                 <SelectValue placeholder="בחרי עיר" />
               </SelectTrigger>
-              <SelectContent dir="rtl">
+              <SelectContent dir="rtl" position="item-aligned" className="bg-white">
                 {cities.length > 0 ? (
                   <>
                     <SelectItem value="all">כל הערים</SelectItem>
