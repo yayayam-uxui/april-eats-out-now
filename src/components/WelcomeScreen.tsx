@@ -31,10 +31,10 @@ const WelcomeScreen: React.FC<WelcomeScreenProps> = ({
           alt="Apricot Labs" 
           className="h-16 mb-4"
         />
-        <div className="w-60 h-60 relative">
-          {/* Using the default image as the cover image */}
+        <div className="w-80 h-80 relative">
+          {/* Using the new uploaded image */}
           <img 
-            src="/lovable-uploads/bdcca772-60da-46da-8de8-2b388085ef94.png" 
+            src="/lovable-uploads/618e3371-cde8-4060-ba50-51efc3c4d6ba.png" 
             alt="April Kot" 
             className="w-full h-full object-contain animate-bounce-slight"
           />
