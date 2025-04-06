@@ -25,12 +25,19 @@ const WelcomeScreen: React.FC<WelcomeScreenProps> = ({
   return (
     <div className="flex flex-col items-center justify-center text-center gap-8 w-full max-w-md mx-auto pt-6">
       <div className="flex flex-col items-center">
-        {/* Using the logo image */}
-        <img 
-          src="/lovable-uploads/d7405f47-bd45-4033-9f24-0c66db6ebeb9.png" 
-          alt="Apricot Labs" 
-          className="h-16 mb-4"
-        />
+        {/* Logo with link to Apricot Labs website */}
+        <a 
+          href="https://www.theapricotlabs.com/" 
+          target="_blank" 
+          rel="noopener noreferrer" 
+          className="inline-block"
+        >
+          <img 
+            src="/lovable-uploads/d7405f47-bd45-4033-9f24-0c66db6ebeb9.png" 
+            alt="Apricot Labs" 
+            className="h-16 mb-4"
+          />
+        </a>
         <div className="w-80 h-80 relative">
           {/* Using the new uploaded image */}
           <img 
