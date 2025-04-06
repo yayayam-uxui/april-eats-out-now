@@ -4,8 +4,8 @@ export interface Restaurant {
   address: string;
   instagram: string;
   maps: string;
-  delivery: "כן" | "לא";
-  category: "burger" | "drink" | "coffee" | "noodles" | "default" | "wolt" | "fancy" | "crystal" | "grill" | "regular";
+  delivery: string;
+  category: string;
   tags: string;
   openingHours: string;
   whenToGo: string;
