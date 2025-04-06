@@ -1,11 +1,62 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+
+import React, { useState, useEffect } from 'react';
+import { Restaurant } from '@/types/restaurant';
+import { getAllRestaurants, getRandomRestaurant } from '@/utils/getRandomFromSheet';
+import WelcomeScreen from '@/components/WelcomeScreen';
+import AprilCard from '@/components/AprilCard';
+import { useToast } from "@/components/ui/use-toast";
 
 const Index = () => {
+  const [restaurants, setRestaurants] = useState<Restaurant[]>([]);
+  const [selectedRestaurant, setSelectedRestaurant] = useState<Restaurant | null>(null);
+  const [loading, setLoading] = useState(false);
+  const { toast } = useToast();
+
+  useEffect(() => {
+    const fetchRestaurants = async () => {
+      const data = await getAllRestaurants();
+      setRestaurants(data);
+    };
+
+    fetchRestaurants();
+  }, []);
+
+  const handleGenerateClick = () => {
+    setLoading(true);
+    
+    // Simulate a slight delay for the "shuffle" feeling
+    setTimeout(() => {
+      const restaurant = getRandomRestaurant(restaurants);
+      
+      if (restaurant) {
+        setSelectedRestaurant(restaurant);
+      } else {
+        toast({
+          title: "אופס!",
+          description: "לא הצלחתי למצוא מסעדה. נסי שוב מאוחר יותר.",
+        });
+      }
+      
+      setLoading(false);
+    }, 800);
+  };
+
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4">Welcome to Your Blank App</h1>
-        <p className="text-xl text-gray-600">Start building your amazing project here!</p>
+    <div className="min-h-screen bg-april-background p-6 flex flex-col items-center justify-center">
+      <div className="w-full max-w-md">
+        {loading ? (
+          <div className="flex flex-col items-center justify-center p-12">
+            <div className="text-april-fuchsia text-2xl mb-4">מגרילה...</div>
+            <div className="w-12 h-12 rounded-full border-4 border-april-fuchsia border-t-transparent animate-spin"></div>
+          </div>
+        ) : selectedRestaurant ? (
+          <AprilCard 
+            restaurant={selectedRestaurant} 
+            onTryAgain={handleGenerateClick} 
+          />
+        ) : (
+          <WelcomeScreen onGenerateClick={handleGenerateClick} />
+        )}
       </div>
     </div>
   );
