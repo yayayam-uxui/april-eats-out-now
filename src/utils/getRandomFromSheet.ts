@@ -1,15 +1,20 @@
 
 import { Restaurant, Restaurants } from "../types/restaurant";
 
-const SHEET_URL = "https://opensheet.elk.sh/1h1IIi8Ns3j8z2VoLs6Hr-3yl58LV3PhevL_qIKNU8SY/Sheet1";
+// Updated with a more specific sheet URL format
+const SHEET_URL = "https://opensheet.elk.sh/1h1IIi8Ns3j8z2VoLs6Hr-3yl58LV3PhevL_qIKNU8SY/1";
 
 export async function getAllRestaurants(): Promise<Restaurants> {
   try {
+    console.log("Fetching from:", SHEET_URL);
     const response = await fetch(SHEET_URL);
     if (!response.ok) {
+      const errorText = await response.text();
+      console.error("API Error:", errorText);
       throw new Error("Failed to fetch restaurant data");
     }
     const data = await response.json();
+    console.log("Successfully fetched data:", data);
     return data as Restaurants;
   } catch (error) {
     console.error("Error fetching restaurant data:", error);

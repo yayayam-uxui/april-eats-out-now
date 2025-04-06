@@ -33,8 +33,8 @@ const AprilCard: React.FC<AprilCardProps> = ({ restaurant, onTryAgain }) => {
         </div>
         
         <div className="flex-1 text-right">
-          <p className="text-lg font-medium italic mb-2">"{restaurant.aprilQuote}"</p>
-          <h2 className="text-2xl font-bold">{restaurant.name}</h2>
+          <p className="text-lg font-medium italic mb-2 text-right">"{restaurant.aprilQuote}"</p>
+          <h2 className="text-2xl font-bold text-right">{restaurant.name}</h2>
         </div>
       </div>
 

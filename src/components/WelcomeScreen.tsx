@@ -27,8 +27,8 @@ const WelcomeScreen: React.FC<WelcomeScreenProps> = ({ onGenerateClick }) => {
 
       <div className="space-y-6 w-full">
         <div className="p-6 bg-white rounded-xl shadow-md">
-          <h2 className="text-xl font-medium mb-4">היי, אני אפריל קוט 🍑</h2>
-          <p className="text-lg">מאיפה את או איפה בא לך לאכול היום?</p>
+          <h2 className="text-xl font-medium mb-4 text-right">היי, אני אפריל קוט 🍑</h2>
+          <p className="text-lg text-right">מאיפה את או איפה בא לך לאכול היום?</p>
         </div>
         
         <Button 
