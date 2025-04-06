@@ -5,7 +5,7 @@ export interface Restaurant {
   instagram: string;
   maps: string;
   delivery: "כן" | "לא";
-  category: "burger" | "drink" | "coffee" | "noodles" | "default";
+  category: "burger" | "drink" | "coffee" | "noodles" | "default" | "wolt" | "fancy" | "crystal" | "grill" | "regular";
   tags: string;
   openingHours: string;
   whenToGo: string;

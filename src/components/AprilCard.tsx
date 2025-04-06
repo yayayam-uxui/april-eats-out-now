@@ -3,6 +3,7 @@ import React from 'react';
 import { Restaurant } from '@/types/restaurant';
 import { Button } from "@/components/ui/button";
 import { Instagram, MapPin } from "lucide-react";
+import { getCharacterImage } from '@/utils/getRandomFromSheet';
 
 interface AprilCardProps {
   restaurant: Restaurant;
@@ -10,7 +11,9 @@ interface AprilCardProps {
 }
 
 const AprilCard: React.FC<AprilCardProps> = ({ restaurant, onTryAgain }) => {
-  const characterImage = `/images/${restaurant.character || 'default.png'}`;
+  const characterImage = restaurant.character ? 
+    getCharacterImage(restaurant.category) : 
+    getCharacterImage('default');
 
   return (
     <div className="april-card flex flex-col gap-6 mx-auto">
@@ -21,9 +24,9 @@ const AprilCard: React.FC<AprilCardProps> = ({ restaurant, onTryAgain }) => {
             alt="April Kot" 
             className="w-full h-full object-contain"
             onError={(e) => {
-              // Fallback if image doesn't exist yet
+              // Fallback if image doesn't exist
               const target = e.target as HTMLImageElement;
-              target.src = `https://via.placeholder.com/150x150?text=${restaurant.category || 'April'}`;
+              target.src = "/lovable-uploads/704febbb-e3b1-404e-9a4d-0ba66ffbc511.png";
               target.onerror = null;
             }}
           />

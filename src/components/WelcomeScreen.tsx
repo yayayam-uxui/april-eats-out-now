@@ -10,18 +10,17 @@ const WelcomeScreen: React.FC<WelcomeScreenProps> = ({ onGenerateClick }) => {
   return (
     <div className="flex flex-col items-center justify-center text-center gap-8 w-full max-w-md mx-auto pt-6">
       <div className="flex flex-col items-center">
+        <img 
+          src="/lovable-uploads/d7405f47-bd45-4033-9f24-0c66db6ebeb9.png" 
+          alt="Apricot Labs" 
+          className="h-16 mb-4"
+        />
         <h1 className="text-3xl font-bold mb-2">Apricot Labs</h1>
         <div className="w-60 h-60 relative">
           <img 
-            src="/images/default.png" 
+            src="/lovable-uploads/704febbb-e3b1-404e-9a4d-0ba66ffbc511.png" 
             alt="April Kot" 
             className="w-full h-full object-contain animate-bounce-slight"
-            onError={(e) => {
-              // Fallback if image doesn't exist yet
-              const target = e.target as HTMLImageElement;
-              target.src = "https://via.placeholder.com/300x300?text=April+Kot";
-              target.onerror = null;
-            }}
           />
         </div>
       </div>

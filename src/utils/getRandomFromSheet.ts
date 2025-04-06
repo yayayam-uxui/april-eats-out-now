@@ -26,16 +26,27 @@ export function getRandomRestaurant(restaurants: Restaurants): Restaurant | null
 }
 
 export function getCharacterImage(category: string): string {
+  // Match category to uploaded images
   switch (category) {
     case "burger":
-      return "/images/burger.png";
+      return "/lovable-uploads/7ebf112b-555f-4a38-bd16-d53ed8fac45f.png"; // April with burger
     case "drink":
-      return "/images/drink.png";
+      return "/lovable-uploads/6ff257be-188d-4cd9-9e54-ab6571d57980.png"; // April with drink
     case "coffee":
-      return "/images/coffee.png";
+      return "/lovable-uploads/b991275a-ed8d-47b2-a8fb-afe392ab24b4.png"; // April with coffee
     case "noodles":
-      return "/images/noodles.png";
+      return "/lovable-uploads/3b19f7ea-541e-430c-bdd8-4cd065f40397.png"; // April with noodles
+    case "wolt":
+      return "/lovable-uploads/09a70519-ae80-4625-b5a6-5abd495ec6f8.png"; // April on scooter
+    case "fancy":
+      return "/lovable-uploads/04e3a1b3-5de7-4c46-93cf-a09537c3064c.png"; // April with drink/martini
+    case "crystal":
+      return "/lovable-uploads/34184948-4bc8-4a28-9f22-7f995fc6506a.png"; // April with crystal ball
+    case "grill":
+      return "/lovable-uploads/62085b43-4555-4809-afc3-4a1c195c8c3c.png"; // April with BBQ
+    case "regular":
+      return "/lovable-uploads/bdcca772-60da-46da-8de8-2b388085ef94.png"; // Regular April
     default:
-      return "/images/default.png";
+      return "/lovable-uploads/704febbb-e3b1-404e-9a4d-0ba66ffbc511.png"; // Default April
   }
 }
