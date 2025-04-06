@@ -35,7 +35,7 @@ const WelcomeScreen: React.FC<WelcomeScreenProps> = ({
           <img 
             src="/lovable-uploads/d7405f47-bd45-4033-9f24-0c66db6ebeb9.png" 
             alt="Apricot Labs" 
-            className="h-12"
+            className="h-16" 
           />
         </a>
         
