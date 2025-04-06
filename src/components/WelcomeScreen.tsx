@@ -23,23 +23,24 @@ const WelcomeScreen: React.FC<WelcomeScreenProps> = ({
   onCityChange 
 }) => {
   return (
-    <div className="flex flex-col items-center justify-center text-center gap-8 w-full max-w-md mx-auto pt-6 pb-24">
-      <div className="flex flex-col items-center">
+    <div className="flex flex-col items-center justify-between min-h-[80vh] text-center w-full max-w-md mx-auto py-10 px-4">
+      <div className="flex flex-col items-center w-full">
         {/* Logo with link to Apricot Labs website */}
         <a 
           href="https://www.theapricotlabs.com/" 
           target="_blank" 
           rel="noopener noreferrer" 
-          className="inline-block"
+          className="mb-8"
         >
           <img 
             src="/lovable-uploads/d7405f47-bd45-4033-9f24-0c66db6ebeb9.png" 
             alt="Apricot Labs" 
-            className="h-16 mb-4"
+            className="h-12"
           />
         </a>
-        <div className="w-80 h-80 relative">
-          {/* Using the new uploaded image */}
+        
+        {/* April Kot Image */}
+        <div className="w-48 h-48 mb-10">
           <img 
             src="/lovable-uploads/618e3371-cde8-4060-ba50-51efc3c4d6ba.png" 
             alt="April Kot" 
@@ -49,14 +50,17 @@ const WelcomeScreen: React.FC<WelcomeScreenProps> = ({
       </div>
 
       <div className="space-y-6 w-full">
-        <div className="p-6 bg-white rounded-xl shadow-md" dir="rtl">
-          <h2 className="text-xl font-medium mb-4 text-center">היי, אני אפריל קוט 🍑</h2>
-          <p className="text-lg text-center">מאיפה את או איפה בא לך לאכול היום?</p>
+        <div className="p-6 bg-white rounded-3xl shadow-md" dir="rtl">
+          <h2 className="text-xl font-medium mb-4 text-center">
+            <span className="mr-2">היי, אני אפריל קוט</span>
+            <span role="img" aria-label="peach">🍑</span>
+          </h2>
+          <p className="text-lg text-center mb-6">מאיפה את או איפה בא לך לאכול היום?</p>
         
           {/* City dropdown */}
-          <div className="mt-4 mb-2">
+          <div className="mt-4">
             <Select value={selectedCity} onValueChange={onCityChange}>
-              <SelectTrigger dir="rtl" className="w-full text-right">
+              <SelectTrigger dir="rtl" className="w-full text-right border-2 rounded-xl py-6">
                 <SelectValue placeholder="בחרי עיר" />
               </SelectTrigger>
               <SelectContent dir="rtl" position="item-aligned" className="bg-white">
@@ -77,10 +81,11 @@ const WelcomeScreen: React.FC<WelcomeScreenProps> = ({
         
         <Button 
           onClick={() => onGenerateClick(selectedCity !== 'all' ? selectedCity : undefined)}
-          className="april-button w-full text-lg"
+          className="april-button w-full text-lg py-6 rounded-full"
           dir="rtl"
         >
-          💖 תגרילי לי מקום
+          <span className="mr-2">תגרילי לי מקום</span>
+          <span role="img" aria-label="sparkle">✨</span>
         </Button>
       </div>
     </div>
