@@ -22,12 +22,36 @@ export async function getAllRestaurants(): Promise<Restaurants> {
   }
 }
 
-export function getRandomRestaurant(restaurants: Restaurants): Restaurant | null {
+export function getRandomRestaurant(restaurants: Restaurants, selectedCity?: string): Restaurant | null {
   if (restaurants.length === 0) {
     return null;
   }
-  const randomIndex = Math.floor(Math.random() * restaurants.length);
-  return restaurants[randomIndex];
+  
+  // Filter by city if provided
+  const filteredRestaurants = selectedCity 
+    ? restaurants.filter(restaurant => restaurant.city === selectedCity)
+    : restaurants;
+    
+  // If no restaurants match the filter, return null
+  if (filteredRestaurants.length === 0) {
+    return null;
+  }
+  
+  const randomIndex = Math.floor(Math.random() * filteredRestaurants.length);
+  return filteredRestaurants[randomIndex];
+}
+
+export function getAllCities(restaurants: Restaurants): string[] {
+  // Extract unique cities from restaurant data
+  const cities = new Set<string>();
+  
+  restaurants.forEach(restaurant => {
+    if (restaurant.city) {
+      cities.add(restaurant.city);
+    }
+  });
+  
+  return Array.from(cities).sort();
 }
 
 export function getCharacterImage(category: string): string {

@@ -11,6 +11,7 @@ export interface Restaurant {
   whenToGo: string;
   aprilQuote: string;
   character: string;
+  city: string;
 }
 
 export type Restaurants = Restaurant[];

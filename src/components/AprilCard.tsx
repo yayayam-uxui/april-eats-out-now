@@ -32,9 +32,12 @@ const AprilCard: React.FC<AprilCardProps> = ({ restaurant, onTryAgain }) => {
           />
         </div>
         
-        <div className="flex-1 text-right">
-          <p className="text-lg font-medium italic mb-2 text-right">"{restaurant.aprilQuote}"</p>
-          <h2 className="text-2xl font-bold text-right">{restaurant.name}</h2>
+        <div className="flex-1" dir="rtl">
+          <p className="text-lg font-medium italic mb-2 text-center">"{restaurant.aprilQuote}"</p>
+          <h2 className="text-2xl font-bold text-center">{restaurant.name}</h2>
+          {restaurant.city && (
+            <p className="text-sm text-gray-600 mt-1 text-center">{restaurant.city}</p>
+          )}
         </div>
       </div>
 
@@ -63,7 +66,7 @@ const AprilCard: React.FC<AprilCardProps> = ({ restaurant, onTryAgain }) => {
       </div>
 
       <div className="mt-4">
-        <Button onClick={onTryAgain} className="april-button w-full">
+        <Button onClick={onTryAgain} className="april-button w-full" dir="rtl">
           מקום אחר בבקשה ✨
         </Button>
       </div>
