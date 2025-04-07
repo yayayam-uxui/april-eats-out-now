@@ -53,8 +53,11 @@ const SocialLinks: React.FC<SocialLinksProps> = ({ restaurant, onShare }) => {
     );
   }
 
-  // Add Wolt link if it exists and isn't "אין" or empty
+  // Add Wolt link if it exists and isn't "אין"
   if (restaurant.wolt && restaurant.wolt !== 'אין' && restaurant.wolt.trim() !== '') {
+    // Log for debugging
+    console.log("Adding Wolt button with link:", restaurant.wolt);
+    
     socialLinks.push(
       <SocialButton 
         key="wolt"
@@ -68,6 +71,9 @@ const SocialLinks: React.FC<SocialLinksProps> = ({ restaurant, onShare }) => {
         />
       </SocialButton>
     );
+  } else {
+    // Log for debugging why Wolt button isn't added
+    console.log("Not adding Wolt button. Value:", restaurant.wolt);
   }
 
   // Add Order Link if available and not "אין" or empty

@@ -17,24 +17,29 @@ export async function getAllRestaurants(): Promise<Restaurants> {
     console.log("Successfully fetched data:", rawData);
     
     // Transform the raw data into our Restaurant type
-    const restaurants: Restaurants = rawData.map((item: any) => ({
-      name: item["שם המקום"] || "",
-      address: item["כתובת (אופציונלי)"] || "",
-      instagram: item["לינק לאינסטגרם"] || "",
-      maps: item["לינק לגוגל מפות"] || "",
-      wolt: item["לינק לוולט"] || "",
-      delivery: item["משלוחים?"] || "לא",
-      category: item["קטגוריה"] || "default",
-      tags: item["תגיות"] || "",
-      openingHours: "",  // Not available in the source data
-      whenToGo: item["מתי ללכת?"] || "",
-      aprilQuote: item["משפט"] || "",
-      character: item["תמונה מתאימה"] || "default.png", // Fixed the column name by removing extra newline
-      city: item["עיר"] || "",
-      image: item["שם תמונה מתאימה"] || "default.png",
-      website: item["אתר"] || "",
-      orderLink: item["לינק להזמנות - לא וולט"] || ""
-    }));
+    const restaurants: Restaurants = rawData.map((item: any) => {
+      // Log Wolt data for debugging
+      console.log(`Restaurant ${item["שם המקום"]} - Wolt link:`, item["לינק לוולט"]);
+      
+      return {
+        name: item["שם המקום"] || "",
+        address: item["כתובת (אופציונלי)"] || "",
+        instagram: item["לינק לאינסטגרם"] || "",
+        maps: item["לינק לגוגל מפות"] || "",
+        wolt: item["לינק לוולט"] || "",
+        delivery: item["משלוחים?"] || "לא",
+        category: item["קטגוריה"] || "default",
+        tags: item["תגיות"] || "",
+        openingHours: "",  // Not available in the source data
+        whenToGo: item["מתי ללכת?"] || "",
+        aprilQuote: item["משפט"] || "",
+        character: item["תמונה מתאימה"] || "default.png",
+        city: item["עיר"] || "",
+        image: item["שם תמונה מתאימה"] || "default.png",
+        website: item["אתר"] || "",
+        orderLink: item["לינק להזמנות - לא וולט"] || ""
+      };
+    });
     
     console.log("Transformed restaurant data:", restaurants);
     return restaurants;
