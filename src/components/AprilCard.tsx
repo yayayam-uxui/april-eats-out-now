@@ -86,15 +86,8 @@ const AprilCard: React.FC<AprilCardProps> = ({ restaurant, onTryAgain, onBack })
 
   return (
     <div className="flex flex-col gap-6 min-h-screen py-6 px-4 pb-10" dir="rtl">
-      {/* Logo and header */}
+      {/* Logo and header - adjusted positioning */}
       <div className="flex items-center justify-between pt-6">
-        <button 
-          onClick={onBack}
-          className="april-social-button rtl-flip"
-          aria-label="חזרה"
-        >
-          <ChevronLeft size={20} />
-        </button>
         <a 
           href="https://www.theapricotlabs.com/" 
           target="_blank" 
@@ -107,15 +100,22 @@ const AprilCard: React.FC<AprilCardProps> = ({ restaurant, onTryAgain, onBack })
             className="h-10" 
           />
         </a>
+        <button 
+          onClick={onBack}
+          className="april-social-button"
+          aria-label="חזרה"
+        >
+          <ChevronLeft size={20} />
+        </button>
       </div>
 
-      {/* April's avatar */}
+      {/* April's avatar - made bigger */}
       <div className="flex justify-center relative">
         <div className="april-image-container animate-bounce-slight">
           <img 
             src={characterImage} 
             alt="April Kot" 
-            className="w-full h-full object-contain"
+            className="w-full h-full object-contain scale-125"
             onError={(e) => {
               // Fallback if image doesn't exist
               const target = e.target as HTMLImageElement;

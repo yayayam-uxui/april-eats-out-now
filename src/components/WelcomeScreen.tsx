@@ -41,12 +41,12 @@ const WelcomeScreen: React.FC<WelcomeScreenProps> = ({
         </a>
       </div>
       
-      {/* April Kot Image */}
+      {/* April Kot Image - made bigger */}
       <div className="april-image-container animate-bounce-slight">
         <img 
           src="/lovable-uploads/618e3371-cde8-4060-ba50-51efc3c4d6ba.png" 
           alt="April Kot" 
-          className="w-full h-full object-contain"
+          className="w-full h-full object-contain scale-125"
         />
       </div>
 
@@ -58,24 +58,24 @@ const WelcomeScreen: React.FC<WelcomeScreenProps> = ({
           </h2>
           <p className="text-lg text-center mb-6">מאיפה את או איפה בא לך לאכול היום?</p>
         
-          {/* City dropdown */}
+          {/* City dropdown - fixed text alignment */}
           <div className="mt-4">
             <Select value={selectedCity} onValueChange={onCityChange}>
               <SelectTrigger 
                 className="w-full text-right border-2 rounded-lg py-6"
               >
-                <SelectValue placeholder="כל הערים" />
+                <SelectValue placeholder="כל הערים" className="text-right" />
               </SelectTrigger>
               <SelectContent position="item-aligned" className="bg-card text-right">
                 {cities.length > 0 ? (
                   <>
-                    <SelectItem value="all">כל הערים</SelectItem>
+                    <SelectItem value="all" className="text-right">כל הערים</SelectItem>
                     {cities.map((city) => (
-                      <SelectItem key={city} value={city}>{city}</SelectItem>
+                      <SelectItem key={city} value={city} className="text-right">{city}</SelectItem>
                     ))}
                   </>
                 ) : (
-                  <SelectItem value="all">טוען ערים...</SelectItem>
+                  <SelectItem value="all" className="text-right">טוען ערים...</SelectItem>
                 )}
               </SelectContent>
             </Select>
