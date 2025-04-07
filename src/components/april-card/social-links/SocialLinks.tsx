@@ -53,27 +53,33 @@ const SocialLinks: React.FC<SocialLinksProps> = ({ restaurant, onShare }) => {
     );
   }
 
-  // Add Wolt link if it exists and isn't "אין"
-  if (restaurant.wolt && restaurant.wolt !== 'אין' && restaurant.wolt.trim() !== '') {
-    // Log for debugging
-    console.log("Adding Wolt button with link:", restaurant.wolt);
+  // Improved Wolt button logic with more strict validation
+  // The restaurant.wolt could be coming as undefined or null from the API
+  const woltLink = restaurant.wolt;
+  console.log("Checking Wolt link:", woltLink, "Type:", typeof woltLink);
+  
+  // Check if Wolt link exists, isn't "אין", and isn't empty
+  if (woltLink && woltLink !== 'אין' && woltLink.trim() !== '') {
+    console.log("Will add Wolt button with link:", woltLink);
+    
+    // Ensure the link has proper protocol
+    const formattedWoltLink = woltLink.startsWith('http') ? woltLink : `https://${woltLink}`;
     
     socialLinks.push(
       <SocialButton 
         key="wolt"
-        href={restaurant.wolt.startsWith('http') ? restaurant.wolt : `https://${restaurant.wolt}`}
+        href={formattedWoltLink}
         ariaLabel="וולט"
       >
         <img 
           src="/lovable-uploads/0420bfa1-b2a7-4774-b93b-bb0eb577d4db.png" 
-          alt="W" 
+          alt="Wolt" 
           className="w-5 h-5 object-contain"
         />
       </SocialButton>
     );
   } else {
-    // Log for debugging why Wolt button isn't added
-    console.log("Not adding Wolt button. Value:", restaurant.wolt);
+    console.log("Not adding Wolt button. Value:", woltLink);
   }
 
   // Add Order Link if available and not "אין" or empty
