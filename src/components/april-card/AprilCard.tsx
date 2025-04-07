@@ -34,19 +34,19 @@ const AprilCard: React.FC<AprilCardProps> = ({ restaurant, onTryAgain, onBack })
   const handleShare = ShareHandler({ restaurant });
 
   return (
-    <div className="flex flex-col min-h-screen py-6 px-4" dir="rtl">
+    <div className="flex flex-col min-h-screen py-4 px-4" dir="rtl">
       {/* Logo header with updated positioning */}
-      <div className="mb-8">
+      <div className="mb-4">
         <AprilHeader onBack={onBack} />
       </div>
 
       <div className="flex flex-col items-center">
-        {/* Character image with proper spacing */}
-        <div className="mb-8">
+        {/* Character image with reduced spacing */}
+        <div className="mb-4">
           <CharacterImage imageSrc={characterImage} />
         </div>
         
-        <Card className="overflow-hidden border-0 rounded-2xl shadow-lg mx-auto bg-white fade-in animate-enter w-full mb-10">
+        <Card className="overflow-hidden border-0 rounded-2xl shadow-lg mx-auto bg-white fade-in animate-enter w-full mb-6">
           {/* Restaurant image if available */}
           {restaurant.image && (
             <RestaurantImage image={restaurant.image} name={restaurant.name} />
