@@ -89,7 +89,7 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen bg-april-background flex flex-col items-center">
+    <div className="min-h-screen bg-april-background flex flex-col items-center" dir="rtl">
       <div className="w-full max-w-md relative">
         {loading ? (
           <div className="flex flex-col items-center justify-center p-12 h-screen">

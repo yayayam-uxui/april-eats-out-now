@@ -1,3 +1,4 @@
+
 @import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700&display=swap');
 
 @tailwind base;
@@ -97,7 +98,17 @@
 
   body {
     @apply bg-april-background text-april-text font-rubik;
+    direction: rtl;
   }
+
+  html {
+    direction: rtl;
+  }
+}
+
+/* RTL specific adjustments */
+.rtl-flip {
+  transform: scaleX(-1);
 }
 
 /* Standardized component styles */

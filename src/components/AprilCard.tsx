@@ -85,12 +85,12 @@ const AprilCard: React.FC<AprilCardProps> = ({ restaurant, onTryAgain, onBack })
   const tags = restaurant.tags ? restaurant.tags.split(',').map(tag => tag.trim()) : [];
 
   return (
-    <div className="flex flex-col gap-6 min-h-screen py-6 px-4 pb-10">
+    <div className="flex flex-col gap-6 min-h-screen py-6 px-4 pb-10" dir="rtl">
       {/* Logo and header */}
       <div className="flex items-center justify-between pt-6">
         <button 
           onClick={onBack}
-          className="april-social-button"
+          className="april-social-button rtl-flip"
           aria-label="חזרה"
         >
           <ChevronLeft size={20} />
@@ -139,7 +139,7 @@ const AprilCard: React.FC<AprilCardProps> = ({ restaurant, onTryAgain, onBack })
         )}
 
         {/* Card content */}
-        <div className="p-6" dir="rtl">
+        <div className="p-6 text-right">
           <div className="mb-6">
             <h2 className="text-2xl font-bold">{restaurant.name}</h2>
             
