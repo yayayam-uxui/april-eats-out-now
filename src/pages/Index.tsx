@@ -12,6 +12,7 @@ const Index = () => {
   const [loading, setLoading] = useState(false);
   const [cities, setCities] = useState<string[]>([]);
   const [selectedCity, setSelectedCity] = useState<string>("all");
+  const [lastSelectedRestaurantId, setLastSelectedRestaurantId] = useState<string | null>(null);
   const { toast } = useToast();
 
   useEffect(() => {
@@ -32,17 +33,51 @@ const Index = () => {
     
     // Simulate a slight delay for the "shuffle" feeling
     setTimeout(() => {
-      const restaurant = getRandomRestaurant(restaurants, city);
+      // Filter restaurants by city if needed
+      const filteredRestaurants = city 
+        ? restaurants.filter(restaurant => restaurant.city === city)
+        : restaurants;
       
-      if (restaurant) {
-        setSelectedRestaurant(restaurant);
-      } else {
+      if (filteredRestaurants.length === 0) {
         toast({
           title: "אופס!",
           description: city 
             ? `לא הצלחתי למצוא מסעדה ב${city}. נסי עיר אחרת.` 
             : "לא הצלחתי למצוא מסעדה. נסי שוב מאוחר יותר.",
         });
+        setLoading(false);
+        return;
+      }
+      
+      // If there's only one restaurant in the city and it's the same as last time
+      if (filteredRestaurants.length === 1 && 
+          lastSelectedRestaurantId === filteredRestaurants[0].name + filteredRestaurants[0].city) {
+        // Get random restaurant from any city
+        const randomRestaurant = getRandomRestaurant(restaurants);
+        
+        if (randomRestaurant) {
+          toast({
+            title: "רק מקום אחד זמין",
+            description: `אין עוד מקומות ב${city}. מה דעתך על מקום מ${randomRestaurant.city}?`,
+          });
+          setSelectedRestaurant(randomRestaurant);
+          setLastSelectedRestaurantId(randomRestaurant.name + randomRestaurant.city);
+        }
+      } else {
+        // Normal flow - get a random restaurant from filtered list
+        const restaurant = getRandomRestaurant(restaurants, city);
+        
+        if (restaurant) {
+          setSelectedRestaurant(restaurant);
+          setLastSelectedRestaurantId(restaurant.name + restaurant.city);
+        } else {
+          toast({
+            title: "אופס!",
+            description: city 
+              ? `לא הצלחתי למצוא מסעדה ב${city}. נסי עיר אחרת.` 
+              : "לא הצלחתי למצוא מסעדה. נסי שוב מאוחר יותר.",
+          });
+        }
       }
       
       setLoading(false);
