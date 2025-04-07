@@ -17,7 +17,7 @@ const CharacterImage: React.FC<CharacterImageProps> = ({ imageSrc }) => {
   const displayImage = (imageError && imageSrc === attemptedImage) ? defaultImage : imageSrc;
 
   return (
-    <div className="flex justify-center relative mb-5">
+    <div className="flex justify-center relative mb-8">
       <div className="april-image-container animate-bounce-slight">
         <img 
           src={displayImage} 

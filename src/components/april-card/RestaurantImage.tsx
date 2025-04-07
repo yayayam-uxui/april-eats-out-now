@@ -31,7 +31,7 @@ const RestaurantImage: React.FC<RestaurantImageProps> = ({ image, name }) => {
       <img
         src={imageError ? fallbackImage : image}
         alt={`${name} - תמונה`}
-        className="w-full h-48 object-cover rounded-t-2xl"
+        className="w-full h-52 object-cover rounded-t-2xl"
         onError={(e) => {
           console.log('Failed to load restaurant image:', image, 'for restaurant:', name);
           setImageError(true);

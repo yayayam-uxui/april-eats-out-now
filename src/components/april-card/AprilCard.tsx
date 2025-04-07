@@ -34,11 +34,11 @@ const AprilCard: React.FC<AprilCardProps> = ({ restaurant, onTryAgain, onBack })
   const handleShare = ShareHandler({ restaurant });
 
   return (
-    <div className="flex flex-col gap-6 min-h-screen py-6 px-4 pb-10" dir="rtl">
+    <div className="flex flex-col gap-4 min-h-screen py-6 px-4 pb-10" dir="rtl">
       {/* Logo and header with proper positioning */}
       <AprilHeader onBack={onBack} />
 
-      {/* Character image outside the card */}
+      {/* Character image outside the card with more bottom margin */}
       <CharacterImage imageSrc={characterImage} />
 
       <Card className="overflow-hidden border-0 rounded-2xl shadow-lg mx-auto mb-16 bg-white fade-in animate-enter">
