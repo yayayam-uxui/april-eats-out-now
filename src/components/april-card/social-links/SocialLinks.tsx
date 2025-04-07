@@ -15,7 +15,7 @@ const SocialLinks: React.FC<SocialLinksProps> = ({ restaurant, onShare }) => {
   const socialLinks = [];
 
   // Add Instagram if available
-  if (restaurant.instagram && restaurant.instagram !== 'אין') {
+  if (restaurant.instagram && restaurant.instagram !== 'אין' && restaurant.instagram.trim() !== '') {
     socialLinks.push(
       <SocialButton 
         key="instagram"
@@ -28,7 +28,7 @@ const SocialLinks: React.FC<SocialLinksProps> = ({ restaurant, onShare }) => {
   }
   
   // Add Website if available
-  if (restaurant.website && restaurant.website !== 'אין') {
+  if (restaurant.website && restaurant.website !== 'אין' && restaurant.website.trim() !== '') {
     socialLinks.push(
       <SocialButton 
         key="website"
@@ -41,7 +41,7 @@ const SocialLinks: React.FC<SocialLinksProps> = ({ restaurant, onShare }) => {
   }
   
   // Add Google Maps if available
-  if (restaurant.maps && restaurant.maps !== 'אין') {
+  if (restaurant.maps && restaurant.maps !== 'אין' && restaurant.maps.trim() !== '') {
     socialLinks.push(
       <SocialButton 
         key="maps"
@@ -53,8 +53,8 @@ const SocialLinks: React.FC<SocialLinksProps> = ({ restaurant, onShare }) => {
     );
   }
 
-  // Add Wolt link ONLY if it exists and isn't "אין" - no fallback to generic Wolt link
-  if (restaurant.wolt && restaurant.wolt !== 'אין') {
+  // Add Wolt link ONLY if it exists and isn't "אין" or empty - no fallback to generic Wolt link
+  if (restaurant.wolt && restaurant.wolt !== 'אין' && restaurant.wolt.trim() !== '') {
     socialLinks.push(
       <SocialButton 
         key="wolt"
@@ -69,10 +69,10 @@ const SocialLinks: React.FC<SocialLinksProps> = ({ restaurant, onShare }) => {
       </SocialButton>
     );
   }
-  // Removed the else condition as per user requirements - no fallback to generic Wolt link
+  // No fallback to generic Wolt link, even if delivery is available
 
-  // Add Order Link if available and not "אין"
-  if (restaurant.orderLink && restaurant.orderLink !== 'אין') {
+  // Add Order Link if available and not "אין" or empty
+  if (restaurant.orderLink && restaurant.orderLink !== 'אין' && restaurant.orderLink.trim() !== '') {
     socialLinks.push(
       <SocialButton 
         key="orderLink"
