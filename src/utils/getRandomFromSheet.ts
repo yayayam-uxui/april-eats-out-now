@@ -121,7 +121,20 @@ export function getCharacterImage(characterName: string): string {
     "default.png": "/lovable-uploads/bdcca772-60da-46da-8de8-2b388085ef94.png",
     "default": "/lovable-uploads/bdcca772-60da-46da-8de8-2b388085ef94.png",
     "beta.png": "/lovable-uploads/bdcca772-60da-46da-8de8-2b388085ef94.png",  // Added for Beta cafe
-    "beta": "/lovable-uploads/bdcca772-60da-46da-8de8-2b388085ef94.png"       // Added without extension
+    "beta": "/lovable-uploads/bdcca772-60da-46da-8de8-2b388085ef94.png",       // Added without extension
+    // הוספת מיפויים חדשים לתמונות שהועלו
+    "bbq_april": "/lovable-uploads/d900efb1-bb87-41f3-ba74-7042158c507b.png",
+    "burger_april": "/lovable-uploads/cc012936-bcba-403f-9524-4d1defb9d5b5.png",
+    "cafe_april": "/lovable-uploads/85b09cf2-41e8-4dab-a03c-94b7b81d00b8.png",
+    "cocktail_april": "/lovable-uploads/902d3945-6236-4cb2-b4e0-a9fae144a8cb.png",
+    "crystal_april": "/lovable-uploads/a3434e13-b2af-4b4a-9936-f743970f15c0.png",
+    "fancy_april": "/lovable-uploads/7f8a0789-f4b4-4fca-b48f-102a60c2491c.png",
+    "noodle_april": "/lovable-uploads/852d3b43-f8b7-4306-900e-7be840ab4c38.png",
+    "scooter_april": "/lovable-uploads/11708440-3f90-40f6-a95b-c5d5e5a1fa4d.png",
+    "surprise_april": "/lovable-uploads/1357226a-3fd2-4d3f-99b4-418598b4925f.png",
+    "wink_april": "/lovable-uploads/b7fb9ba8-3676-4eac-95f1-1e4ce6111ed1.png",
+    "wine_april": "/lovable-uploads/cf032c4c-3aef-4c3f-8ac8-414c3df52ac5.png",
+    "yes_april": "/lovable-uploads/4b2217e2-65cf-4ded-80df-2beb0fb67395.png"
   };
 
   // Check if we have a mapping for this character

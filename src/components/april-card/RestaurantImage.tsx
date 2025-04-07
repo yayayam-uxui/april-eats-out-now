@@ -19,8 +19,8 @@ const RestaurantImage: React.FC<RestaurantImageProps> = ({ image, name }) => {
     return null;
   }
   
-  // Check if the image is a full URL or just a filename
-  const imageUrl = image.startsWith('http') 
+  // Check if the image is a newly uploaded image or a URL
+  const imageUrl = image.startsWith('/lovable-uploads/') || image.startsWith('http')
     ? image 
     : `/lovable-uploads/${image}`;
 
@@ -35,7 +35,7 @@ const RestaurantImage: React.FC<RestaurantImageProps> = ({ image, name }) => {
         src={imageError ? fallbackImage : imageUrl}
         alt={`${name} - תמונה`}
         className="w-full h-48 object-cover rounded-t-2xl"
-        onError={() => {
+        onError={(e) => {
           console.log('Failed to load restaurant image:', imageUrl);
           setImageError(true);
         }}
