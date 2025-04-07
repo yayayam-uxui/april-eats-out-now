@@ -38,8 +38,8 @@ const AprilCard: React.FC<AprilCardProps> = ({ restaurant, onTryAgain, onBack })
       {/* Logo and header with proper positioning */}
       <AprilHeader onBack={onBack} />
 
-      <div className="flex flex-col items-center py-8">
-        {/* Character image as a regular element in the flow, not absolutely positioned */}
+      <div className="flex flex-col items-center py-4">
+        {/* Character image with adjusted spacing */}
         <CharacterImage imageSrc={characterImage} />
         
         <Card className="overflow-hidden border-0 rounded-2xl shadow-lg mx-auto bg-white fade-in animate-enter w-full">

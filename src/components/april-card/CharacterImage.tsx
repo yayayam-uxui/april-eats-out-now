@@ -12,7 +12,7 @@ const CharacterImage: React.FC<CharacterImageProps> = ({ imageSrc }) => {
   if (!imageSrc || imageError) {
     console.log("Using default character image due to missing src or error");
     return (
-      <div className="flex justify-center mb-6">
+      <div className="flex justify-center mb-2">
         <img 
           src="/lovable-uploads/bdcca772-60da-46da-8de8-2b388085ef94.png"
           alt="April Character Default" 
@@ -23,7 +23,7 @@ const CharacterImage: React.FC<CharacterImageProps> = ({ imageSrc }) => {
   }
 
   return (
-    <div className="flex justify-center mb-6">
+    <div className="flex justify-center mb-2">
       <img 
         src={imageSrc} 
         alt="April Character" 
