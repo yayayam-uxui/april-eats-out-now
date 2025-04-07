@@ -53,7 +53,7 @@ const SocialLinks: React.FC<SocialLinksProps> = ({ restaurant, onShare }) => {
     );
   }
 
-  // Fixed Wolt button logic with debuggin
+  // Fixed Wolt button logic with improved logging and debug info
   console.log("Wolt link check:", {
     link: restaurant.wolt,
     type: typeof restaurant.wolt,
@@ -62,12 +62,15 @@ const SocialLinks: React.FC<SocialLinksProps> = ({ restaurant, onShare }) => {
     isTrimEmpty: restaurant.wolt?.trim() === ''
   });
   
-  // Make sure wolt exists, isn't "אין", and isn't empty before adding the button
-  if (restaurant.wolt && restaurant.wolt !== 'אין' && restaurant.wolt.trim() !== '') {
+  // Improved logic to add Wolt button - less strict checking
+  if (restaurant.wolt && restaurant.wolt.trim() !== '' && restaurant.wolt !== 'אין') {
     console.log("Adding Wolt button with link:", restaurant.wolt);
     
     // Ensure the link has proper protocol
-    const formattedWoltLink = restaurant.wolt.startsWith('http') ? restaurant.wolt : `https://${restaurant.wolt}`;
+    let formattedWoltLink = restaurant.wolt;
+    if (!formattedWoltLink.includes('://')) {
+      formattedWoltLink = `https://${formattedWoltLink}`;
+    }
     
     socialLinks.push(
       <SocialButton 
