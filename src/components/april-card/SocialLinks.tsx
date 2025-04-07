@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Instagram, MapPin, Share2, Globe } from "lucide-react";
+import { Instagram, MapPin, Share2, Globe, Package } from "lucide-react";
 import { Restaurant } from '@/types/restaurant';
 
 interface SocialLinksProps {
@@ -10,7 +10,7 @@ interface SocialLinksProps {
 
 const SocialLinks: React.FC<SocialLinksProps> = ({ restaurant, onShare }) => {
   return (
-    <div className="flex justify-start gap-3 mb-6">
+    <div className="flex justify-start gap-3 mb-6 flex-wrap">
       {restaurant.instagram && (
         <a 
           href={restaurant.instagram.startsWith('http') ? restaurant.instagram : `https://www.instagram.com/${restaurant.instagram}`} 
@@ -47,7 +47,7 @@ const SocialLinks: React.FC<SocialLinksProps> = ({ restaurant, onShare }) => {
         </a>
       )}
 
-      {/* Make sure Wolt link appears even if the string is just "יש" or other positive values */}
+      {/* Wolt delivery link */}
       {(restaurant.wolt || (restaurant.delivery && 
          restaurant.delivery.toLowerCase() !== "אין" && 
          restaurant.delivery.toLowerCase() !== "לא")) && (
@@ -61,8 +61,21 @@ const SocialLinks: React.FC<SocialLinksProps> = ({ restaurant, onShare }) => {
           <img 
             src="/lovable-uploads/43877453-7d1d-4a27-9c68-857d2a48b56e.png" 
             alt="Wolt" 
-            className="w-8 h-8" // Increased from w-6 h-6 to w-8 h-8
+            className="w-8 h-8"
           />
+        </a>
+      )}
+
+      {/* New button for other order links */}
+      {restaurant.orderLink && (
+        <a 
+          href={restaurant.orderLink.startsWith('http') ? restaurant.orderLink : `https://${restaurant.orderLink}`} 
+          target="_blank" 
+          rel="noopener noreferrer"
+          className="april-social-button"
+          aria-label="הזמנות"
+        >
+          <Package size={20} />
         </a>
       )}
 
