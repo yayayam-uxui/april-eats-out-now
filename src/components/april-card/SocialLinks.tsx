@@ -16,7 +16,7 @@ const SocialLinks: React.FC<SocialLinksProps> = ({ restaurant, onShare }) => {
           href={restaurant.instagram.startsWith('http') ? restaurant.instagram : `https://www.instagram.com/${restaurant.instagram}`} 
           target="_blank" 
           rel="noopener noreferrer" 
-          className="april-social-button"
+          className="april-social-button w-12 h-12 flex items-center justify-center"
           aria-label="אינסטגרם"
         >
           <Instagram size={20} />
@@ -28,7 +28,7 @@ const SocialLinks: React.FC<SocialLinksProps> = ({ restaurant, onShare }) => {
           href={restaurant.website.startsWith('http') ? restaurant.website : `https://${restaurant.website}`}
           target="_blank" 
           rel="noopener noreferrer"
-          className="april-social-button"
+          className="april-social-button w-12 h-12 flex items-center justify-center"
           aria-label="אתר"
         >
           <Globe size={20} />
@@ -40,14 +40,14 @@ const SocialLinks: React.FC<SocialLinksProps> = ({ restaurant, onShare }) => {
           href={restaurant.maps} 
           target="_blank" 
           rel="noopener noreferrer"
-          className="april-social-button"
+          className="april-social-button w-12 h-12 flex items-center justify-center"
           aria-label="גוגל מפות"
         >
           <MapPin size={20} />
         </a>
       )}
 
-      {/* Wolt delivery link with improved styling */}
+      {/* Wolt delivery link */}
       {(restaurant.wolt || (restaurant.delivery && 
          restaurant.delivery.toLowerCase() !== "אין" && 
          restaurant.delivery.toLowerCase() !== "לא")) && (
@@ -55,11 +55,11 @@ const SocialLinks: React.FC<SocialLinksProps> = ({ restaurant, onShare }) => {
           href={restaurant.wolt || "https://wolt.com"} 
           target="_blank" 
           rel="noopener noreferrer"
-          className="april-social-button"
+          className="april-social-button w-12 h-12 flex items-center justify-center"
           aria-label="וולט"
         >
-          {/* Improved Wolt "W" styling */}
-          <div className="flex items-center justify-center font-bold text-lg">W</div>
+          {/* Wolt "W" icon */}
+          <span className="font-bold text-lg">W</span>
         </a>
       )}
 
@@ -69,7 +69,7 @@ const SocialLinks: React.FC<SocialLinksProps> = ({ restaurant, onShare }) => {
           href={restaurant.orderLink.startsWith('http') ? restaurant.orderLink : `https://${restaurant.orderLink}`} 
           target="_blank" 
           rel="noopener noreferrer"
-          className="april-social-button"
+          className="april-social-button w-12 h-12 flex items-center justify-center"
           aria-label="הזמנות"
         >
           <Package size={20} />
@@ -78,7 +78,7 @@ const SocialLinks: React.FC<SocialLinksProps> = ({ restaurant, onShare }) => {
 
       <button 
         onClick={onShare}
-        className="april-social-button"
+        className="april-social-button w-12 h-12 flex items-center justify-center"
         aria-label="שתף"
       >
         <Share2 size={20} />
