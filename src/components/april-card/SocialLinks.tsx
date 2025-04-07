@@ -79,8 +79,8 @@ const SocialLinks: React.FC<SocialLinksProps> = ({ restaurant, onShare }) => {
       </a>
     );
   } 
-  // Add Wolt button only if delivery column says "יש"
-  else if (restaurant.delivery && restaurant.delivery === 'יש') {
+  // Add delivery button only if delivery column says "יש" but no direct Wolt link exists
+  else if (restaurant.delivery && restaurant.delivery === 'יש' && (!restaurant.wolt || restaurant.wolt === 'אין')) {
     socialLinks.push(
       <a 
         key="wolt"

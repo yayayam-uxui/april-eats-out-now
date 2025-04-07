@@ -58,15 +58,16 @@ const WelcomeScreen: React.FC<WelcomeScreenProps> = ({
           </h2>
           <p className="text-lg text-center mb-6">מאיפה את או איפה בא לך לאכול היום?</p>
         
-          {/* City dropdown - fixed text alignment */}
-          <div className="mt-4">
-            <Select value={selectedCity} onValueChange={onCityChange}>
+          {/* City dropdown - improved RTL support */}
+          <div className="mt-4" dir="rtl">
+            <Select value={selectedCity} onValueChange={onCityChange} dir="rtl">
               <SelectTrigger 
-                className="w-full text-right border-2 rounded-lg py-6"
+                className="w-full text-right border-2 rounded-lg py-6 flex flex-row-reverse justify-between"
+                dir="rtl"
               >
                 <SelectValue placeholder="כל הערים" />
               </SelectTrigger>
-              <SelectContent align="end" className="bg-white text-right">
+              <SelectContent align="end" className="bg-white text-right" dir="rtl" sideOffset={8}>
                 {cities.length > 0 ? (
                   <>
                     <SelectItem value="all" className="text-right flex justify-end">כל הערים</SelectItem>
