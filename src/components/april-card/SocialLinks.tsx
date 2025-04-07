@@ -47,9 +47,12 @@ const SocialLinks: React.FC<SocialLinksProps> = ({ restaurant, onShare }) => {
         </a>
       )}
 
-      {restaurant.wolt && (
+      {/* Make sure Wolt link appears even if the string is just "יש" or other positive values */}
+      {(restaurant.wolt || (restaurant.delivery && 
+         restaurant.delivery.toLowerCase() !== "אין" && 
+         restaurant.delivery.toLowerCase() !== "לא")) && (
         <a 
-          href={restaurant.wolt} 
+          href={restaurant.wolt || "https://wolt.com"} 
           target="_blank" 
           rel="noopener noreferrer"
           className="april-social-button"
