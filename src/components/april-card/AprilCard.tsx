@@ -7,7 +7,7 @@ import { getCharacterImage } from '@/utils/getRandomFromSheet';
 import AprilHeader from './AprilHeader';
 import CharacterImage from './CharacterImage';
 import RestaurantHeader from './RestaurantHeader';
-import SocialLinks from './SocialLinks';
+import SocialLinks from './social-links';
 import LocationMap from './LocationMap';
 
 interface AprilCardProps {
