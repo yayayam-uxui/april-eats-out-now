@@ -37,7 +37,8 @@ export async function getAllRestaurants(): Promise<Restaurants> {
         openingHours: "",  // Not available in the source data
         whenToGo: item["מתי ללכת?"] || "",
         aprilQuote: item["משפט"] || "",
-        character: item["תמונה מתאימה"] || "default.png",
+        // Use the correct column for character images
+        character: item["שם תמונה מתאימה"] || "default.png",
         city: item["עיר"] || "",
         image: getRestaurantImageMapping(imageFileName),  // Map the image name to the correct path
         website: item["אתר"] || "",
