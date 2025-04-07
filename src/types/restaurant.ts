@@ -15,7 +15,7 @@ export interface Restaurant {
   image?: string;
   wolt?: string;
   website?: string;
-  orderLink?: string; // New field for non-Wolt order links
+  orderLink?: string; // Non-Wolt order links
 }
 
 export type Restaurants = Restaurant[];

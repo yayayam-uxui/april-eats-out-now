@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Instagram, MapPin, Share2, Globe, Package } from "lucide-react";
+import { Instagram, MapPin, Share2, Globe, Package, ShoppingCart } from "lucide-react";
 import { Restaurant } from '@/types/restaurant';
 
 interface SocialLinksProps {
@@ -60,14 +60,31 @@ const SocialLinks: React.FC<SocialLinksProps> = ({ restaurant, onShare }) => {
     );
   }
 
-  // Add Wolt if available
-  if (restaurant.wolt || (restaurant.delivery && 
-      restaurant.delivery.toLowerCase() !== "אין" && 
-      restaurant.delivery.toLowerCase() !== "לא")) {
+  // Add Wolt link only if it exists
+  if (restaurant.wolt && restaurant.wolt !== 'אין') {
     socialLinks.push(
       <a 
         key="wolt"
-        href={restaurant.wolt || "https://wolt.com"} 
+        href={restaurant.wolt} 
+        target="_blank" 
+        rel="noopener noreferrer"
+        className="april-social-button w-12 h-12 flex items-center justify-center"
+        aria-label="וולט"
+      >
+        <img 
+          src="/lovable-uploads/0420bfa1-b2a7-4774-b93b-bb0eb577d4db.png" 
+          alt="W" 
+          className="w-5 h-5 object-contain"
+        />
+      </a>
+    );
+  } 
+  // Add Wolt button only if delivery column says "יש"
+  else if (restaurant.delivery && restaurant.delivery === 'יש') {
+    socialLinks.push(
+      <a 
+        key="wolt"
+        href="https://wolt.com" 
         target="_blank" 
         rel="noopener noreferrer"
         className="april-social-button w-12 h-12 flex items-center justify-center"
@@ -82,8 +99,8 @@ const SocialLinks: React.FC<SocialLinksProps> = ({ restaurant, onShare }) => {
     );
   }
 
-  // Add Order Link if available
-  if (restaurant.orderLink) {
+  // Add Order Link if available and not "אין"
+  if (restaurant.orderLink && restaurant.orderLink !== 'אין') {
     socialLinks.push(
       <a 
         key="orderLink"
@@ -93,7 +110,7 @@ const SocialLinks: React.FC<SocialLinksProps> = ({ restaurant, onShare }) => {
         className="april-social-button w-12 h-12 flex items-center justify-center"
         aria-label="הזמנות"
       >
-        <Package size={20} />
+        <ShoppingCart size={20} />
       </a>
     );
   }
@@ -110,13 +127,11 @@ const SocialLinks: React.FC<SocialLinksProps> = ({ restaurant, onShare }) => {
     </button>
   );
 
-  // Split links into two rows if there are more than 4
-  const shouldSplitRows = socialLinks.length > 4;
+  // Split links into two rows if there are more than 3 (maximum 3 per row)
+  const shouldSplitRows = socialLinks.length > 3;
   
-  // Calculate how many links to show in each row
-  const firstRowCount = shouldSplitRows 
-    ? Math.ceil(socialLinks.length / 2) > 3 ? 3 : Math.ceil(socialLinks.length / 2) 
-    : socialLinks.length;
+  // Calculate how many links to show in each row (max 3 per row)
+  const firstRowCount = shouldSplitRows ? Math.min(3, socialLinks.length) : socialLinks.length;
   
   const firstRowLinks = socialLinks.slice(0, firstRowCount);
   const secondRowLinks = shouldSplitRows ? socialLinks.slice(firstRowCount) : [];
