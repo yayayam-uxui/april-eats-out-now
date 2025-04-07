@@ -34,15 +34,19 @@ const AprilCard: React.FC<AprilCardProps> = ({ restaurant, onTryAgain, onBack })
   const handleShare = ShareHandler({ restaurant });
 
   return (
-    <div className="flex flex-col min-h-screen py-6 px-4 pb-10" dir="rtl">
-      {/* Logo and header with proper positioning */}
-      <AprilHeader onBack={onBack} />
+    <div className="flex flex-col min-h-screen py-6 px-4" dir="rtl">
+      {/* Logo header with updated positioning */}
+      <div className="mb-8">
+        <AprilHeader onBack={onBack} />
+      </div>
 
-      <div className="flex flex-col items-center py-4">
-        {/* Character image with adjusted spacing */}
-        <CharacterImage imageSrc={characterImage} />
+      <div className="flex flex-col items-center">
+        {/* Character image with proper spacing */}
+        <div className="mb-8">
+          <CharacterImage imageSrc={characterImage} />
+        </div>
         
-        <Card className="overflow-hidden border-0 rounded-2xl shadow-lg mx-auto bg-white fade-in animate-enter w-full">
+        <Card className="overflow-hidden border-0 rounded-2xl shadow-lg mx-auto bg-white fade-in animate-enter w-full mb-10">
           {/* Restaurant image if available */}
           {restaurant.image && (
             <RestaurantImage image={restaurant.image} name={restaurant.name} />
@@ -53,7 +57,7 @@ const AprilCard: React.FC<AprilCardProps> = ({ restaurant, onTryAgain, onBack })
             {/* Restaurant header info */}
             <RestaurantHeader restaurant={restaurant} />
 
-            {/* Social links - updated component with proper spacing */}
+            {/* Social links */}
             <SocialLinks restaurant={restaurant} onShare={handleShare} />
 
             {/* Google Maps embed */}

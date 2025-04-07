@@ -8,7 +8,7 @@ interface AprilHeaderProps {
 
 const AprilHeader: React.FC<AprilHeaderProps> = ({ onBack }) => {
   return (
-    <div className="flex items-center justify-between pt-6">
+    <div className="flex items-center justify-between">
       <a 
         href="https://www.theapricotlabs.com/" 
         target="_blank" 
