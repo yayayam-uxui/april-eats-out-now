@@ -53,7 +53,7 @@ const SocialLinks: React.FC<SocialLinksProps> = ({ restaurant, onShare }) => {
     );
   }
 
-  // Add Wolt link only if it exists and isn't "אין"
+  // Add Wolt link ONLY if it exists and isn't "אין" - no fallback to generic Wolt link
   if (restaurant.wolt && restaurant.wolt !== 'אין') {
     socialLinks.push(
       <SocialButton 
@@ -69,7 +69,7 @@ const SocialLinks: React.FC<SocialLinksProps> = ({ restaurant, onShare }) => {
       </SocialButton>
     );
   }
-  // We've removed the else condition with the default wolt link per user requirements
+  // Removed the else condition as per user requirements - no fallback to generic Wolt link
 
   // Add Order Link if available and not "אין"
   if (restaurant.orderLink && restaurant.orderLink !== 'אין') {

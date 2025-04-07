@@ -23,7 +23,7 @@ const AprilHeader: React.FC<AprilHeaderProps> = ({ onBack }) => {
       </a>
       <button 
         onClick={onBack}
-        className="april-social-button w-12 h-12 flex items-center justify-center"
+        className="april-social-button min-w-[48px] min-h-[48px] p-2 flex items-center justify-center"
         aria-label="חזרה"
         type="button"
       >
