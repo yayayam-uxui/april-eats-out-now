@@ -42,7 +42,7 @@ const AprilCard: React.FC<AprilCardProps> = ({ restaurant, onTryAgain, onBack })
       <CharacterImage imageSrc={characterImage} />
 
       <Card className="overflow-hidden border-0 rounded-2xl shadow-lg mx-auto mb-16 bg-white fade-in animate-enter">
-        {/* Restaurant hero image */}
+        {/* Restaurant hero image - removed */}
         <RestaurantImage image={restaurant.image} name={restaurant.name} />
 
         {/* Card content */}
