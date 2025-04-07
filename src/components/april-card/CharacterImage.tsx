@@ -22,7 +22,7 @@ const CharacterImage: React.FC<CharacterImageProps> = ({ imageSrc }) => {
         <img 
           src={displayImage} 
           alt="April Kot" 
-          className="w-36 h-36 object-contain"
+          className="w-48 h-48 object-contain" // Increased size from w-36 h-36 to w-48 h-48
           onError={(e) => {
             console.log("Image failed to load:", imageSrc);
             setAttemptedImage(imageSrc);
