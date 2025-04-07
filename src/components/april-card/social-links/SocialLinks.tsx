@@ -54,7 +54,7 @@ const SocialLinks: React.FC<SocialLinksProps> = ({ restaurant, onShare }) => {
   }
 
   // Add Wolt link ONLY if it exists and isn't "אין" or empty - no fallback to generic Wolt link
-  if (restaurant.wolt && restaurant.wolt !== 'אין' && restaurant.wolt.trim() !== '') {
+  if (restaurant.wolt && restaurant.wolt.trim() !== '' && restaurant.wolt.trim() !== 'אין') {
     socialLinks.push(
       <SocialButton 
         key="wolt"
