@@ -24,14 +24,14 @@ const WelcomeScreen: React.FC<WelcomeScreenProps> = ({
   onCityChange 
 }) => {
   return (
-    <div className="flex flex-col items-center min-h-screen bg-april-background px-4">
-      <div className="flex flex-col items-center w-full max-w-md mx-auto pt-8 pb-6">
+    <div className="flex flex-col items-center justify-between h-full min-h-screen bg-april-background px-4 py-8">
+      <div className="w-full max-w-md flex flex-col items-center justify-center">
         {/* Logo with link to Apricot Labs website */}
         <a 
           href="https://www.theapricotlabs.com/" 
           target="_blank" 
           rel="noopener noreferrer" 
-          className="mb-10"
+          className="mb-8"
         >
           <img 
             src="/lovable-uploads/1d24a55a-4f8d-44f4-91a0-0cf3d0681371.png" 
@@ -40,8 +40,8 @@ const WelcomeScreen: React.FC<WelcomeScreenProps> = ({
           />
         </a>
         
-        {/* April Kot Image - larger and centered */}
-        <div className="w-52 h-52 mb-10">
+        {/* April Kot Image */}
+        <div className="w-44 h-44 mb-8">
           <img 
             src="/lovable-uploads/618e3371-cde8-4060-ba50-51efc3c4d6ba.png" 
             alt="April Kot" 
@@ -50,8 +50,8 @@ const WelcomeScreen: React.FC<WelcomeScreenProps> = ({
         </div>
       </div>
 
-      <div className="w-full max-w-md px-4">
-        <div className="p-6 bg-white rounded-3xl shadow-sm mb-4" dir="rtl">
+      <div className="w-full max-w-md flex-grow flex flex-col justify-center">
+        <div className="p-6 bg-white rounded-2xl shadow-sm mb-5" dir="rtl">
           <h2 className="text-xl font-bold mb-4 text-center">
             <span className="mr-2">היי, אני אפריל קוט</span>
             <span role="img" aria-label="peach">🍑</span>
@@ -93,8 +93,9 @@ const WelcomeScreen: React.FC<WelcomeScreenProps> = ({
         </Button>
       </div>
       
-      {/* Empty space at bottom to ensure proper proportions */}
-      <div className="flex-grow"></div>
+      <div className="w-full max-w-md pt-8">
+        {/* Footer content if needed */}
+      </div>
     </div>
   );
 };

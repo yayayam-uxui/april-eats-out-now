@@ -50,10 +50,10 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen bg-april-background p-6 flex flex-col items-center justify-center">
+    <div className="min-h-screen bg-april-background p-6 flex flex-col items-center justify-between">
       <div className="w-full max-w-md">
         {loading ? (
-          <div className="flex flex-col items-center justify-center p-12">
+          <div className="flex flex-col items-center justify-center p-12 h-[70vh]">
             <div className="text-april-fuchsia text-2xl mb-4">מגרילה...</div>
             <div className="w-12 h-12 rounded-full border-4 border-april-fuchsia border-t-transparent animate-spin"></div>
           </div>
