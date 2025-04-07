@@ -68,23 +68,8 @@ const SocialLinks: React.FC<SocialLinksProps> = ({ restaurant, onShare }) => {
         />
       </SocialButton>
     );
-  } 
-  // Add delivery button only if delivery column says "יש" but no direct Wolt link exists
-  else if (restaurant.delivery && restaurant.delivery === 'יש' && (!restaurant.wolt || restaurant.wolt === 'אין')) {
-    socialLinks.push(
-      <SocialButton 
-        key="wolt"
-        href="https://wolt.com"
-        ariaLabel="וולט"
-      >
-        <img 
-          src="/lovable-uploads/0420bfa1-b2a7-4774-b93b-bb0eb577d4db.png" 
-          alt="W" 
-          className="w-5 h-5 object-contain"
-        />
-      </SocialButton>
-    );
   }
+  // We've removed the else condition with the default wolt link per user requirements
 
   // Add Order Link if available and not "אין"
   if (restaurant.orderLink && restaurant.orderLink !== 'אין') {
