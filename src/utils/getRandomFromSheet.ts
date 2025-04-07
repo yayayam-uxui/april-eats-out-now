@@ -78,48 +78,52 @@ export function getAllCities(restaurants: Restaurants): string[] {
 
 export function getCharacterImage(characterName: string): string {
   // Match character name to uploaded images - with improved handling
-  if (!characterName) return "/lovable-uploads/bdcca772-60da-46da-8de8-2b388085ef94.png"; // Default April
+  if (!characterName) {
+    console.log("No character name provided, using default");
+    return "/lovable-uploads/bdcca772-60da-46da-8de8-2b388085ef94.png"; // Default April
+  }
   
-  characterName = characterName.trim();
+  characterName = characterName.trim().toLowerCase(); // Normalize to lowercase for case-insensitive matching
   console.log("Getting character image for:", characterName);
   
-  switch (characterName) {
-    case "thinking.png":
-    case "thinking":
-      return "/lovable-uploads/bdcca772-60da-46da-8de8-2b388085ef94.png"; // Thinking April
-    case "wink.png":
-    case "wink":
-      return "/lovable-uploads/04e3a1b3-5de7-4c46-93cf-a09537c3064c.png"; // April with drink/winking
-    case "cafe_baked_goods.png":
-    case "cafe":
-    case "baked_goods":
-      return "/lovable-uploads/b991275a-ed8d-47b2-a8fb-afe392ab24b4.png"; // April with coffee
-    case "burger.png":
-    case "burger":
-      return "/lovable-uploads/7ebf112b-555f-4a38-bd16-d53ed8fac45f.png"; // April with burger
-    case "wolter.png":
-    case "wolter":
-    case "scooter.png":
-    case "scooter":
-      return "/lovable-uploads/09a70519-ae80-4625-b5a6-5abd495ec6f8.png"; // April on scooter
-    case "drink.png":
-    case "drink":
-    case "fancy.png":
-    case "fancy":
-      return "/lovable-uploads/04e3a1b3-5de7-4c46-93cf-a09537c3064c.png"; // April with drink/martini
-    case "crystal.png":
-    case "crystal":
-      return "/lovable-uploads/34184948-4bc8-4a28-9f22-7f995fc6506a.png"; // April with crystal ball
-    case "noodles.png":
-    case "noodles":
-      return "/lovable-uploads/3b19f7ea-541e-430c-bdd8-4cd065f40397.png"; // April with noodles
-    case "bbq.png":
-    case "bbq":
-      return "/lovable-uploads/62085b43-4555-4809-afc3-4a1c195c8c3c.png"; // April with BBQ
-    case "default.png":
-    case "default":
-    default:
-      console.log("Using default character image for:", characterName);
-      return "/lovable-uploads/bdcca772-60da-46da-8de8-2b388085ef94.png"; // Default April
+  // Map of character identifiers to their image paths
+  const characterMap: Record<string, string> = {
+    "thinking.png": "/lovable-uploads/bdcca772-60da-46da-8de8-2b388085ef94.png",
+    "thinking": "/lovable-uploads/bdcca772-60da-46da-8de8-2b388085ef94.png",
+    "wink.png": "/lovable-uploads/04e3a1b3-5de7-4c46-93cf-a09537c3064c.png",
+    "wink": "/lovable-uploads/04e3a1b3-5de7-4c46-93cf-a09537c3064c.png",
+    "cafe_baked_goods.png": "/lovable-uploads/b991275a-ed8d-47b2-a8fb-afe392ab24b4.png",
+    "cafe": "/lovable-uploads/b991275a-ed8d-47b2-a8fb-afe392ab24b4.png",
+    "baked_goods": "/lovable-uploads/b991275a-ed8d-47b2-a8fb-afe392ab24b4.png",
+    "burger.png": "/lovable-uploads/7ebf112b-555f-4a38-bd16-d53ed8fac45f.png",
+    "burger": "/lovable-uploads/7ebf112b-555f-4a38-bd16-d53ed8fac45f.png",
+    "wolter.png": "/lovable-uploads/09a70519-ae80-4625-b5a6-5abd495ec6f8.png",
+    "wolter": "/lovable-uploads/09a70519-ae80-4625-b5a6-5abd495ec6f8.png",
+    "scooter.png": "/lovable-uploads/09a70519-ae80-4625-b5a6-5abd495ec6f8.png",
+    "scooter": "/lovable-uploads/09a70519-ae80-4625-b5a6-5abd495ec6f8.png",
+    "drink.png": "/lovable-uploads/04e3a1b3-5de7-4c46-93cf-a09537c3064c.png",
+    "drink": "/lovable-uploads/04e3a1b3-5de7-4c46-93cf-a09537c3064c.png",
+    "fancy.png": "/lovable-uploads/04e3a1b3-5de7-4c46-93cf-a09537c3064c.png",
+    "fancy": "/lovable-uploads/04e3a1b3-5de7-4c46-93cf-a09537c3064c.png",
+    "crystal.png": "/lovable-uploads/34184948-4bc8-4a28-9f22-7f995fc6506a.png",
+    "crystal": "/lovable-uploads/34184948-4bc8-4a28-9f22-7f995fc6506a.png",
+    "noodles.png": "/lovable-uploads/3b19f7ea-541e-430c-bdd8-4cd065f40397.png",
+    "noodles": "/lovable-uploads/3b19f7ea-541e-430c-bdd8-4cd065f40397.png",
+    "bbq.png": "/lovable-uploads/62085b43-4555-4809-afc3-4a1c195c8c3c.png",
+    "bbq": "/lovable-uploads/62085b43-4555-4809-afc3-4a1c195c8c3c.png",
+    "default.png": "/lovable-uploads/bdcca772-60da-46da-8de8-2b388085ef94.png",
+    "default": "/lovable-uploads/bdcca772-60da-46da-8de8-2b388085ef94.png",
+    "beta.png": "/lovable-uploads/bdcca772-60da-46da-8de8-2b388085ef94.png",  // Added for Beta cafe
+    "beta": "/lovable-uploads/bdcca772-60da-46da-8de8-2b388085ef94.png"       // Added without extension
+  };
+
+  // Check if we have a mapping for this character
+  if (characterMap[characterName]) {
+    console.log("Found character image:", characterName, "->", characterMap[characterName]);
+    return characterMap[characterName];
   }
+  
+  // If not found in our map, log it and return default
+  console.log("Character image not found:", characterName, "Using default instead");
+  return "/lovable-uploads/bdcca772-60da-46da-8de8-2b388085ef94.png"; // Default April
 }

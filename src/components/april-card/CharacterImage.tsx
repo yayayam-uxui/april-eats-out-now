@@ -1,23 +1,37 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 
 interface CharacterImageProps {
   imageSrc: string;
 }
 
 const CharacterImage: React.FC<CharacterImageProps> = ({ imageSrc }) => {
+  const [imageError, setImageError] = useState(false);
+  const [attemptedImage, setAttemptedImage] = useState<string | null>(null);
+
+  // Default image to use if the provided one fails
+  const defaultImage = "/lovable-uploads/bdcca772-60da-46da-8de8-2b388085ef94.png";
+  
+  // If we've already had an error and the new image is the same as the one that failed,
+  // use the default image right away to avoid flashing
+  const displayImage = (imageError && imageSrc === attemptedImage) ? defaultImage : imageSrc;
+
   return (
     <div className="flex justify-center relative">
       <div className="april-image-container animate-bounce-slight">
         <img 
-          src={imageSrc} 
+          src={displayImage} 
           alt="April Kot" 
-          className="w-full h-full object-contain scale-150" // Increased from scale-125 to scale-150
+          className="w-full h-full object-contain scale-150"
           onError={(e) => {
-            // Fallback if image doesn't exist
+            console.log("Image failed to load:", imageSrc);
+            setAttemptedImage(imageSrc);
+            setImageError(true);
+            
+            // Set fallback image
             const target = e.target as HTMLImageElement;
-            target.src = "/lovable-uploads/704febbb-e3b1-404e-9a4d-0ba66ffbc511.png";
-            target.onerror = null;
+            target.src = defaultImage;
+            target.onerror = null; // Prevent infinite error loop
           }}
         />
       </div>
