@@ -220,19 +220,23 @@ const AprilCard: React.FC<AprilCardProps> = ({ restaurant, onTryAgain, onBack })
             </button>
           </div>
 
-          {/* Google Maps embed */}
+          {/* Google Maps embed with pink tint */}
           {restaurant.maps && (
-            <div className="april-map-container">
+            <div className="april-map-container relative">
               {mapEmbedUrl ? (
-                <iframe
-                  title={`מפה ל${restaurant.name}`}
-                  width="100%"
-                  height="100%"
-                  style={{ border: 0 }}
-                  loading="lazy"
-                  allowFullScreen
-                  src={mapEmbedUrl}
-                ></iframe>
+                <div className="relative w-full h-full">
+                  <iframe
+                    title={`מפה ל${restaurant.name}`}
+                    width="100%"
+                    height="100%"
+                    style={{ border: 0 }}
+                    loading="lazy"
+                    allowFullScreen
+                    src={mapEmbedUrl}
+                    className="relative z-10"
+                  ></iframe>
+                  <div className="absolute inset-0 bg-april-fuchsia opacity-20 pointer-events-none z-20"></div>
+                </div>
               ) : (
                 <div className="w-full h-full flex flex-col items-center justify-center text-april-fuchsia">
                   <MapIcon size={32} />
