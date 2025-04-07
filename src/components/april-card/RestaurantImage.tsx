@@ -27,18 +27,16 @@ const RestaurantImage: React.FC<RestaurantImageProps> = ({ image, name }) => {
   console.log(`Displaying image for ${name}:`, image);
   
   return (
-    <div className="restaurant-image flex justify-center items-center py-4">
-      <div className="april-image-container animate-bounce-slight">
-        <img
-          src={imageError ? fallbackImage : image}
-          alt={`${name} - תמונה`}
-          className="w-full h-full object-contain scale-150"
-          onError={(e) => {
-            console.log('Failed to load restaurant image:', image, 'for restaurant:', name);
-            setImageError(true);
-          }}
-        />
-      </div>
+    <div className="restaurant-image">
+      <img
+        src={imageError ? fallbackImage : image}
+        alt={`${name} - תמונה`}
+        className="w-full h-48 object-cover rounded-t-2xl"
+        onError={(e) => {
+          console.log('Failed to load restaurant image:', image, 'for restaurant:', name);
+          setImageError(true);
+        }}
+      />
     </div>
   );
 };
