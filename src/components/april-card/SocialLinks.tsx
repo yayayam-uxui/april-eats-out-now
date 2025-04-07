@@ -61,7 +61,7 @@ const SocialLinks: React.FC<SocialLinksProps> = ({ restaurant, onShare }) => {
           <img 
             src="/lovable-uploads/43877453-7d1d-4a27-9c68-857d2a48b56e.png" 
             alt="Wolt" 
-            className="w-5 h-5"
+            className="w-6 h-6" // Increased from w-5 h-5 to w-6 h-6
           />
         </a>
       )}
