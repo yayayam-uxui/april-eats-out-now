@@ -38,7 +38,7 @@ const AprilCard: React.FC<AprilCardProps> = ({ restaurant, onTryAgain, onBack })
       {/* Logo and header with proper positioning */}
       <AprilHeader onBack={onBack} />
 
-      <div className="relative pb-10 pt-4">
+      <div className="relative pb-10 pt-20">
         {/* Character image positioned above the card */}
         <CharacterImage imageSrc={characterImage} />
         

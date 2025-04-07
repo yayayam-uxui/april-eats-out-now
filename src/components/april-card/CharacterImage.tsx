@@ -11,11 +11,11 @@ const CharacterImage: React.FC<CharacterImageProps> = ({ imageSrc }) => {
   }
 
   return (
-    <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10">
+    <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-[70%] z-10">
       <img 
         src={imageSrc} 
         alt="April Character" 
-        className="w-full h-full object-contain scale-150" 
+        className="w-64 h-64 object-contain" 
       />
     </div>
   );
