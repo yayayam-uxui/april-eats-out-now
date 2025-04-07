@@ -14,6 +14,7 @@ export interface Restaurant {
   city: string;
   image?: string;
   wolt?: string;
+  website?: string;
 }
 
 export type Restaurants = Restaurant[];

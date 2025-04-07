@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { Restaurant } from '@/types/restaurant';
 import { Button } from "@/components/ui/button";
-import { Instagram, MapPin, Share2, ChevronLeft, MapIcon } from "lucide-react";
+import { Instagram, MapPin, Share2, ChevronLeft, MapIcon, Globe, Clock, Truck } from "lucide-react";
 import { getCharacterImage } from '@/utils/getRandomFromSheet';
 import { Card } from "@/components/ui/card";
 
@@ -143,12 +143,38 @@ const AprilCard: React.FC<AprilCardProps> = ({ restaurant, onTryAgain, onBack })
           <div className="mb-6">
             <h2 className="text-2xl font-bold">{restaurant.name}</h2>
             
-            {restaurant.city && (
-              <p className="text-sm text-muted-foreground mb-2 flex items-center">
-                <MapPin size={14} className="ml-1" />
-                {restaurant.city}
-              </p>
-            )}
+            {/* Address and city */}
+            <div className="flex flex-col gap-1">
+              {restaurant.address && (
+                <p className="text-sm text-muted-foreground flex items-center">
+                  <MapPin size={14} className="ml-1" />
+                  {restaurant.address}
+                </p>
+              )}
+              
+              {restaurant.city && !restaurant.address && (
+                <p className="text-sm text-muted-foreground flex items-center">
+                  <MapPin size={14} className="ml-1" />
+                  {restaurant.city}
+                </p>
+              )}
+              
+              {/* Delivery status */}
+              {restaurant.delivery && restaurant.delivery.toLowerCase() !== "אין" && restaurant.delivery.toLowerCase() !== "לא" && (
+                <p className="text-sm text-green-600 flex items-center">
+                  <Truck size={14} className="ml-1" />
+                  יש משלוחים
+                </p>
+              )}
+
+              {/* When to go */}
+              {restaurant.whenToGo && (
+                <div className="mt-2 flex items-start">
+                  <Clock size={14} className="ml-1 mt-1 flex-shrink-0 text-april-fuchsia" />
+                  <p className="text-sm">{restaurant.whenToGo}</p>
+                </div>
+              )}
+            </div>
 
             <blockquote className="italic border-r-4 border-april-fuchsia pr-4 my-4">
               "{restaurant.aprilQuote}"
@@ -173,13 +199,25 @@ const AprilCard: React.FC<AprilCardProps> = ({ restaurant, onTryAgain, onBack })
           <div className="flex justify-start gap-3 mb-6">
             {restaurant.instagram && (
               <a 
-                href={restaurant.instagram} 
+                href={restaurant.instagram.startsWith('http') ? restaurant.instagram : `https://www.instagram.com/${restaurant.instagram}`} 
                 target="_blank" 
                 rel="noopener noreferrer" 
                 className="april-social-button"
                 aria-label="אינסטגרם"
               >
                 <Instagram size={20} />
+              </a>
+            )}
+            
+            {restaurant.website && (
+              <a 
+                href={restaurant.website.startsWith('http') ? restaurant.website : `https://${restaurant.website}`}
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="april-social-button"
+                aria-label="אתר"
+              >
+                <Globe size={20} />
               </a>
             )}
             

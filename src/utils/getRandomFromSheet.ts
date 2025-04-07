@@ -27,11 +27,12 @@ export async function getAllRestaurants(): Promise<Restaurants> {
       category: item["קטגוריה"] || "default",
       tags: item["תגיות"] || "",
       openingHours: "",  // Not available in the source data
-      whenToGo: "",      // Not available in the source data
+      whenToGo: item["מתי ללכת?"] || "",
       aprilQuote: item["משפט"] || "",
       character: item["תמונה מתאימה\n"] || "default.png",
       city: item["עיר"] || "",
-      image: item["תמונה"] || ""
+      image: item["תמונה"] || "",
+      website: item["אתר"] || ""
     }));
     
     console.log("Transformed restaurant data:", restaurants);
