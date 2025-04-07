@@ -2,8 +2,9 @@
 import React from 'react';
 import { Restaurant } from '@/types/restaurant';
 import { Button } from "@/components/ui/button";
-import { Instagram, MapPin } from "lucide-react";
+import { Instagram, MapPin, Heart, Share2 } from "lucide-react";
 import { getCharacterImage } from '@/utils/getRandomFromSheet';
+import { Card } from "@/components/ui/card";
 
 interface AprilCardProps {
   restaurant: Restaurant;
@@ -15,9 +16,10 @@ const AprilCard: React.FC<AprilCardProps> = ({ restaurant, onTryAgain }) => {
   const characterImage = getCharacterImage(restaurant.character);
 
   return (
-    <div className="bg-card text-card-foreground rounded-lg shadow-lg flex flex-col gap-6 mx-auto p-6 transition-all duration-300 hover:shadow-xl">
-      <div className="flex items-center justify-between">
-        <div className="w-28 h-28 relative animate-bounce-slight">
+    <div className="flex flex-col gap-6 h-full">
+      {/* April's avatar and card header */}
+      <div className="flex justify-center relative mb-8">
+        <div className="w-28 h-28 absolute -top-14 animate-bounce-slight z-10">
           <img 
             src={characterImage} 
             alt="April Kot" 
@@ -30,49 +32,88 @@ const AprilCard: React.FC<AprilCardProps> = ({ restaurant, onTryAgain }) => {
             }}
           />
         </div>
-        
-        <div className="flex-1" dir="rtl">
-          <p className="text-lg font-medium italic mb-2 text-center">"{restaurant.aprilQuote}"</p>
-          <h2 className="text-2xl font-bold text-center">{restaurant.name}</h2>
-          {restaurant.city && (
-            <p className="text-sm text-muted-foreground mt-1 text-center">{restaurant.city}</p>
+      </div>
+
+      <Card className="mt-12 overflow-hidden border-0 rounded-2xl shadow-lg">
+        {/* Restaurant hero image */}
+        <div className="w-full h-48 bg-muted overflow-hidden">
+          {restaurant.image ? (
+            <img 
+              src={restaurant.image} 
+              alt={restaurant.name} 
+              className="w-full h-full object-cover"
+            />
+          ) : (
+            <div className="w-full h-full flex items-center justify-center bg-gradient-to-r from-april-fuchsia/20 to-april-fuchsia/10">
+              <span className="text-april-fuchsia font-semibold text-lg">
+                {restaurant.name} 🍑
+              </span>
+            </div>
           )}
         </div>
-      </div>
 
-      <div className="flex justify-end gap-3">
-        {restaurant.instagram && (
-          <a 
-            href={restaurant.instagram} 
-            target="_blank" 
-            rel="noopener noreferrer" 
-            className="p-2 rounded-full bg-april-fuchsia bg-opacity-10 text-april-fuchsia transition-all hover:bg-opacity-20"
-          >
-            <Instagram size={24} />
-          </a>
-        )}
-        
-        {restaurant.maps && (
-          <a 
-            href={restaurant.maps} 
-            target="_blank" 
-            rel="noopener noreferrer"
-            className="p-2 rounded-full bg-april-fuchsia bg-opacity-10 text-april-fuchsia transition-all hover:bg-opacity-20"
-          >
-            <MapPin size={24} />
-          </a>
-        )}
-      </div>
+        {/* Card content */}
+        <div className="p-6" dir="rtl">
+          <div className="mb-6">
+            <div className="flex items-start justify-between mb-3">
+              <h2 className="text-2xl font-bold">{restaurant.name}</h2>
+              <div className="flex gap-2">
+                <button className="p-2 rounded-full bg-april-fuchsia/10 text-april-fuchsia transition-all hover:bg-april-fuchsia/20">
+                  <Heart size={20} />
+                </button>
+                <button className="p-2 rounded-full bg-april-fuchsia/10 text-april-fuchsia transition-all hover:bg-april-fuchsia/20">
+                  <Share2 size={20} />
+                </button>
+              </div>
+            </div>
 
-      <div className="mt-4">
-        <Button 
-          onClick={onTryAgain} 
-          className="w-full bg-april-fuchsia text-white font-medium py-3 px-6 rounded-full transition-all duration-300 hover:bg-opacity-90 hover:shadow-md" 
-          dir="rtl"
-        >
-          מקום אחר בבקשה ✨
-        </Button>
-      </div>
+            {restaurant.city && (
+              <p className="text-sm text-muted-foreground mb-4 flex items-center">
+                <MapPin size={14} className="mr-1" />
+                {restaurant.city}
+              </p>
+            )}
+
+            <blockquote className="italic border-r-4 border-april-fuchsia pr-4 my-4">
+              "{restaurant.aprilQuote}"
+            </blockquote>
+          </div>
+
+          {/* Social links */}
+          <div className="flex justify-start gap-3 mb-6">
+            {restaurant.instagram && (
+              <a 
+                href={restaurant.instagram} 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="p-3 rounded-full bg-april-fuchsia text-white transition-all hover:bg-opacity-90"
+              >
+                <Instagram size={20} />
+              </a>
+            )}
+            
+            {restaurant.maps && (
+              <a 
+                href={restaurant.maps} 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="p-3 rounded-full bg-april-fuchsia text-white transition-all hover:bg-opacity-90"
+              >
+                <MapPin size={20} />
+              </a>
+            )}
+          </div>
+
+          {/* Try again button */}
+          <Button 
+            onClick={onTryAgain} 
+            className="w-full bg-april-fuchsia text-white font-medium py-6 px-6 rounded-full transition-all duration-300 hover:bg-opacity-90 hover:shadow-md" 
+            dir="rtl"
+          >
+            מקום אחר בבקשה ✨
+          </Button>
+        </div>
+      </Card>
     </div>
   );
 };

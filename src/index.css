@@ -109,3 +109,13 @@
   @apply bg-april-fuchsia text-white font-medium py-3 px-6 rounded-full transition-all duration-300 
   hover:bg-opacity-90 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-april-fuchsia focus:ring-opacity-50;
 }
+
+/* Add new animations for the card */
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.fade-in {
+  animation: fade-in 0.5s ease-out forwards;
+}

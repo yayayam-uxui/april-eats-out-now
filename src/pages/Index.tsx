@@ -50,8 +50,8 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen bg-april-background p-6 flex flex-col items-center justify-between">
-      <div className="w-full max-w-md">
+    <div className="min-h-screen bg-april-background px-4 py-8 flex flex-col items-center justify-between">
+      <div className="w-full max-w-md relative pt-10">
         {loading ? (
           <div className="flex flex-col items-center justify-center p-12 h-[70vh]">
             <div className="text-april-fuchsia text-2xl mb-4">מגרילה...</div>
