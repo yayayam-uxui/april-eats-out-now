@@ -53,17 +53,12 @@ const SocialLinks: React.FC<SocialLinksProps> = ({ restaurant, onShare }) => {
     );
   }
 
-  // Add Wolt link only if it exists, isn't "אין", isn't empty, and starts with "https://wolt.com/"
-  if (
-    restaurant.wolt && 
-    restaurant.wolt.trim() !== '' && 
-    restaurant.wolt.trim() !== 'אין' && 
-    restaurant.wolt.toLowerCase().startsWith('https://wolt.com/')
-  ) {
+  // Add Wolt link if it exists and isn't "אין" or empty
+  if (restaurant.wolt && restaurant.wolt !== 'אין' && restaurant.wolt.trim() !== '') {
     socialLinks.push(
       <SocialButton 
         key="wolt"
-        href={restaurant.wolt}
+        href={restaurant.wolt.startsWith('http') ? restaurant.wolt : `https://${restaurant.wolt}`}
         ariaLabel="וולט"
       >
         <img 
