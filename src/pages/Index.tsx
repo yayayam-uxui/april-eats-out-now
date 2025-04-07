@@ -49,18 +49,23 @@ const Index = () => {
     }, 800);
   };
 
+  const handleBackClick = () => {
+    setSelectedRestaurant(null);
+  };
+
   return (
-    <div className="min-h-screen bg-april-background px-4 py-8 flex flex-col items-center justify-between">
-      <div className="w-full max-w-md relative pt-10">
+    <div className="min-h-screen bg-april-background flex flex-col items-center">
+      <div className="w-full max-w-md relative">
         {loading ? (
-          <div className="flex flex-col items-center justify-center p-12 h-[70vh]">
+          <div className="flex flex-col items-center justify-center p-12 h-screen">
             <div className="text-april-fuchsia text-2xl mb-4">מגרילה...</div>
             <div className="w-12 h-12 rounded-full border-4 border-april-fuchsia border-t-transparent animate-spin"></div>
           </div>
         ) : selectedRestaurant ? (
           <AprilCard 
             restaurant={selectedRestaurant} 
-            onTryAgain={() => handleGenerateClick(selectedCity !== 'all' ? selectedCity : undefined)} 
+            onTryAgain={() => handleGenerateClick(selectedCity !== 'all' ? selectedCity : undefined)}
+            onBack={handleBackClick}
           />
         ) : (
           <WelcomeScreen 

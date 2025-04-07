@@ -1,3 +1,4 @@
+
 import { Restaurant, Restaurants } from "../types/restaurant";
 
 // Updated with a more specific sheet URL format
@@ -21,14 +22,16 @@ export async function getAllRestaurants(): Promise<Restaurants> {
       address: item["כתובת (אופציונלי)"] || "",
       instagram: item["לינק לאינסטגרם"] || "",
       maps: item["לינק לגוגל מפות"] || "",
+      wolt: item["לינק לוולט"] || "",
       delivery: item["משלוחים?"] || "לא",
       category: item["קטגוריה"] || "default",
-      tags: item["קטגוריה יבשה ?"] || "",
+      tags: item["תגיות"] || "",
       openingHours: "",  // Not available in the source data
       whenToGo: "",      // Not available in the source data
       aprilQuote: item["משפט"] || "",
       character: item["תמונה מתאימה\n"] || "default.png",
-      city: item["עיר"] || ""
+      city: item["עיר"] || "",
+      image: item["תמונה"] || ""
     }));
     
     console.log("Transformed restaurant data:", restaurants);

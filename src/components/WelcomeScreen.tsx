@@ -24,14 +24,14 @@ const WelcomeScreen: React.FC<WelcomeScreenProps> = ({
   onCityChange 
 }) => {
   return (
-    <div className="flex flex-col items-center justify-between h-full min-h-screen bg-april-background px-4 py-8">
-      <div className="w-full max-w-md flex flex-col items-center justify-center">
+    <div className="flex flex-col items-center justify-between h-screen overflow-hidden bg-april-background px-4">
+      <div className="w-full pt-10 flex justify-center">
         {/* Logo with link to Apricot Labs website */}
         <a 
           href="https://www.theapricotlabs.com/" 
           target="_blank" 
           rel="noopener noreferrer" 
-          className="mb-8 transition-transform hover:scale-105"
+          className="transition-transform hover:scale-105"
         >
           <img 
             src="/lovable-uploads/1d24a55a-4f8d-44f4-91a0-0cf3d0681371.png" 
@@ -39,18 +39,18 @@ const WelcomeScreen: React.FC<WelcomeScreenProps> = ({
             className="h-10" 
           />
         </a>
-        
-        {/* April Kot Image - Making it bigger */}
-        <div className="w-64 h-64 mb-8 animate-bounce-slight">
-          <img 
-            src="/lovable-uploads/618e3371-cde8-4060-ba50-51efc3c4d6ba.png" 
-            alt="April Kot" 
-            className="w-full h-full object-contain"
-          />
-        </div>
+      </div>
+      
+      {/* April Kot Image - Big size */}
+      <div className="w-64 h-64 animate-bounce-slight">
+        <img 
+          src="/lovable-uploads/618e3371-cde8-4060-ba50-51efc3c4d6ba.png" 
+          alt="April Kot" 
+          className="w-full h-full object-contain"
+        />
       </div>
 
-      <div className="w-full max-w-md flex-grow flex flex-col justify-center">
+      <div className="w-full max-w-md flex flex-col justify-center mb-10">
         <div className="p-6 bg-card text-card-foreground rounded-lg shadow-sm mb-5 transition-all duration-300 hover:shadow-md" dir="rtl">
           <h2 className="text-xl font-bold mb-4 text-center">
             <span className="mr-2">היי, אני אפריל קוט</span>
@@ -91,10 +91,6 @@ const WelcomeScreen: React.FC<WelcomeScreenProps> = ({
           <Sparkles className="h-5 w-5 mr-2" />
           <span>תגרילי לי מקום</span>
         </Button>
-      </div>
-      
-      <div className="w-full max-w-md pt-8">
-        {/* Footer content if needed */}
       </div>
     </div>
   );

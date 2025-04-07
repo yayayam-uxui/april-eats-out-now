@@ -35,7 +35,7 @@
     --input: 214.3 31.8% 91.4%;
     --ring: 222.2 84% 4.9%;
 
-    --radius: 0.5rem;
+    --radius: 0.75rem;
 
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 240 5.3% 26.1%;
@@ -110,12 +110,94 @@
   hover:bg-opacity-90 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-april-fuchsia focus:ring-opacity-50;
 }
 
-/* Add new animations for the card */
+/* Add new animations for card transitions */
 @keyframes fade-in {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
+  from { opacity: 0; transform: translateX(20px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes fade-in-rtl {
+  from { opacity: 0; transform: translateX(-20px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes fade-out {
+  from { opacity: 1; transform: translateX(0); }
+  to { opacity: 0; transform: translateX(20px); }
+}
+
+@keyframes fade-out-rtl {
+  from { opacity: 1; transform: translateX(0); }
+  to { opacity: 0; transform: translateX(-20px); }
+}
+
+@keyframes bounce-slight {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
 }
 
 .fade-in {
-  animation: fade-in 0.5s ease-out forwards;
+  animation: fade-in-rtl 0.5s ease-out forwards;
+}
+
+.fade-out {
+  animation: fade-out-rtl 0.5s ease-out forwards;
+}
+
+.animate-bounce-slight {
+  animation: bounce-slight 2s infinite ease-in-out;
+}
+
+.animate-enter {
+  animation: fade-in-rtl 0.3s ease-out forwards;
+}
+
+.animate-exit {
+  animation: fade-out-rtl 0.3s ease-out forwards;
+}
+
+/* Add smooth page transitions */
+.page-transition-enter {
+  opacity: 0;
+  transform: translateX(-20px);
+}
+
+.page-transition-enter-active {
+  opacity: 1;
+  transform: translateX(0);
+  transition: opacity 300ms, transform 300ms;
+}
+
+.page-transition-exit {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.page-transition-exit-active {
+  opacity: 0;
+  transform: translateX(20px);
+  transition: opacity 300ms, transform 300ms;
+}
+
+/* RTL versions */
+.page-transition-rtl-enter {
+  opacity: 0;
+  transform: translateX(20px);
+}
+
+.page-transition-rtl-enter-active {
+  opacity: 1;
+  transform: translateX(0);
+  transition: opacity 300ms, transform 300ms;
+}
+
+.page-transition-rtl-exit {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.page-transition-rtl-exit-active {
+  opacity: 0;
+  transform: translateX(-20px);
+  transition: opacity 300ms, transform 300ms;
 }

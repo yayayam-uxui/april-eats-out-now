@@ -12,6 +12,8 @@ export interface Restaurant {
   aprilQuote: string;
   character: string;
   city: string;
+  image?: string;
+  wolt?: string;
 }
 
 export type Restaurants = Restaurant[];
