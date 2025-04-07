@@ -10,7 +10,12 @@ const RestaurantImage: React.FC<RestaurantImageProps> = ({ image, name }) => {
   const [imageError, setImageError] = useState(false);
   
   // If no image is provided, don't render anything
-  if (!image || image === 'default.png') {
+  if (!image) {
+    return null;
+  }
+  
+  // Don't try to load "default.png" or empty strings
+  if (image === 'default.png' || image === '') {
     return null;
   }
   
@@ -21,6 +26,8 @@ const RestaurantImage: React.FC<RestaurantImageProps> = ({ image, name }) => {
 
   // Fallback image path in case the main image fails to load
   const fallbackImage = "/placeholder.svg";
+  
+  console.log('Trying to load restaurant image:', imageUrl);
   
   return (
     <div className="restaurant-image">
