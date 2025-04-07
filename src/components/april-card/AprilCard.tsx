@@ -46,7 +46,7 @@ const AprilCard: React.FC<AprilCardProps> = ({ restaurant, onTryAgain, onBack })
 
   return (
     <div className="flex flex-col gap-6 min-h-screen py-6 px-4 pb-10" dir="rtl">
-      {/* Logo and header */}
+      {/* Logo and header with proper positioning */}
       <AprilHeader onBack={onBack} />
 
       {/* April's avatar */}
@@ -69,7 +69,7 @@ const AprilCard: React.FC<AprilCardProps> = ({ restaurant, onTryAgain, onBack })
           {/* Restaurant header info */}
           <RestaurantHeader restaurant={restaurant} />
 
-          {/* Social links */}
+          {/* Social links - updated component with proper spacing */}
           <SocialLinks restaurant={restaurant} onShare={handleShare} />
 
           {/* Google Maps embed */}

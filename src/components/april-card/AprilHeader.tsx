@@ -9,13 +9,6 @@ interface AprilHeaderProps {
 const AprilHeader: React.FC<AprilHeaderProps> = ({ onBack }) => {
   return (
     <div className="flex items-center justify-between pt-6">
-      <button 
-        onClick={onBack}
-        className="april-social-button"
-        aria-label="חזרה"
-      >
-        <ChevronLeft size={20} />
-      </button>
       <a 
         href="https://www.theapricotlabs.com/" 
         target="_blank" 
@@ -28,6 +21,13 @@ const AprilHeader: React.FC<AprilHeaderProps> = ({ onBack }) => {
           className="h-10" 
         />
       </a>
+      <button 
+        onClick={onBack}
+        className="april-social-button w-12 h-12 flex items-center justify-center"
+        aria-label="חזרה"
+      >
+        <ChevronLeft size={24} />
+      </button>
     </div>
   );
 };

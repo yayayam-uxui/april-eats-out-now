@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Instagram, MapPin, Share2, Globe, Package, ShoppingCart } from "lucide-react";
+import { Instagram, MapPin, Share2, Globe, ShoppingCart } from "lucide-react";
 import { Restaurant } from '@/types/restaurant';
 
 interface SocialLinksProps {
@@ -60,7 +60,7 @@ const SocialLinks: React.FC<SocialLinksProps> = ({ restaurant, onShare }) => {
     );
   }
 
-  // Add Wolt link only if it exists
+  // Add Wolt link only if it exists and isn't "אין"
   if (restaurant.wolt && restaurant.wolt !== 'אין') {
     socialLinks.push(
       <a 
@@ -127,25 +127,37 @@ const SocialLinks: React.FC<SocialLinksProps> = ({ restaurant, onShare }) => {
     </button>
   );
 
-  // Split links into two rows if there are more than 3 (maximum 3 per row)
-  const shouldSplitRows = socialLinks.length > 3;
+  // Logic for showing social links in rows
+  // For 1-4 links, use a single row
+  // For 5+ links, split into two rows with max 3 per row
+  const maxPerRow = 3;
+  const shouldSplitRows = socialLinks.length > 4;
   
-  // Calculate how many links to show in each row (max 3 per row)
-  const firstRowCount = shouldSplitRows ? Math.min(3, socialLinks.length) : socialLinks.length;
+  let firstRowLinks, secondRowLinks;
   
-  const firstRowLinks = socialLinks.slice(0, firstRowCount);
-  const secondRowLinks = shouldSplitRows ? socialLinks.slice(firstRowCount) : [];
+  if (shouldSplitRows) {
+    // If we need to split, calculate rows
+    const halfLength = Math.ceil(socialLinks.length / 2);
+    const firstRowCount = Math.min(maxPerRow, halfLength);
+    
+    firstRowLinks = socialLinks.slice(0, firstRowCount);
+    secondRowLinks = socialLinks.slice(firstRowCount);
+  } else {
+    // 4 or fewer links - all in first row
+    firstRowLinks = socialLinks;
+    secondRowLinks = [];
+  }
 
   return (
     <div className="flex flex-col gap-3 mb-6">
       {/* First row of social links */}
-      <div className="flex justify-start gap-3 flex-wrap">
+      <div className="flex justify-between gap-3 flex-wrap">
         {firstRowLinks}
       </div>
       
       {/* Second row of social links (only if needed) */}
       {shouldSplitRows && (
-        <div className="flex justify-start gap-3 flex-wrap">
+        <div className="flex justify-between gap-3 flex-wrap">
           {secondRowLinks}
         </div>
       )}
