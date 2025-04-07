@@ -29,7 +29,7 @@ export async function getAllRestaurants(): Promise<Restaurants> {
       openingHours: "",  // Not available in the source data
       whenToGo: item["מתי ללכת?"] || "",
       aprilQuote: item["משפט"] || "",
-      character: item["תמונה מתאימה\n"] || "default.png",
+      character: item["תמונה מתאימה"] || "default.png", // Fixed the column name by removing extra newline
       city: item["עיר"] || "",
       image: item["שם תמונה מתאימה"] || "default.png",
       website: item["אתר"] || "",
@@ -77,30 +77,49 @@ export function getAllCities(restaurants: Restaurants): string[] {
 }
 
 export function getCharacterImage(characterName: string): string {
-  // Match character name to uploaded images
-  switch (characterName.trim()) {
+  // Match character name to uploaded images - with improved handling
+  if (!characterName) return "/lovable-uploads/bdcca772-60da-46da-8de8-2b388085ef94.png"; // Default April
+  
+  characterName = characterName.trim();
+  console.log("Getting character image for:", characterName);
+  
+  switch (characterName) {
     case "thinking.png":
+    case "thinking":
       return "/lovable-uploads/bdcca772-60da-46da-8de8-2b388085ef94.png"; // Thinking April
     case "wink.png":
+    case "wink":
       return "/lovable-uploads/04e3a1b3-5de7-4c46-93cf-a09537c3064c.png"; // April with drink/winking
     case "cafe_baked_goods.png":
+    case "cafe":
+    case "baked_goods":
       return "/lovable-uploads/b991275a-ed8d-47b2-a8fb-afe392ab24b4.png"; // April with coffee
     case "burger.png":
+    case "burger":
       return "/lovable-uploads/7ebf112b-555f-4a38-bd16-d53ed8fac45f.png"; // April with burger
     case "wolter.png":
+    case "wolter":
     case "scooter.png":
+    case "scooter":
       return "/lovable-uploads/09a70519-ae80-4625-b5a6-5abd495ec6f8.png"; // April on scooter
     case "drink.png":
+    case "drink":
     case "fancy.png":
+    case "fancy":
       return "/lovable-uploads/04e3a1b3-5de7-4c46-93cf-a09537c3064c.png"; // April with drink/martini
     case "crystal.png":
+    case "crystal":
       return "/lovable-uploads/34184948-4bc8-4a28-9f22-7f995fc6506a.png"; // April with crystal ball
     case "noodles.png":
+    case "noodles":
       return "/lovable-uploads/3b19f7ea-541e-430c-bdd8-4cd065f40397.png"; // April with noodles
     case "bbq.png":
+    case "bbq":
       return "/lovable-uploads/62085b43-4555-4809-afc3-4a1c195c8c3c.png"; // April with BBQ
     case "default.png":
+    case "default":
     default:
+      console.log("Using default character image for:", characterName);
       return "/lovable-uploads/bdcca772-60da-46da-8de8-2b388085ef94.png"; // Default April
   }
 }

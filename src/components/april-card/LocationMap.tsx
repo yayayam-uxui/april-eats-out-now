@@ -11,7 +11,7 @@ interface LocationMapProps {
 
 const LocationMap: React.FC<LocationMapProps> = ({ mapUrl, name, city, mapEmbedUrl }) => {
   return (
-    <div className="april-map-container relative">
+    <div className="april-map-container relative mb-6">
       {mapEmbedUrl ? (
         <div className="relative w-full h-full">
           <iframe
@@ -25,6 +25,17 @@ const LocationMap: React.FC<LocationMapProps> = ({ mapUrl, name, city, mapEmbedU
             className="relative z-10"
           ></iframe>
           <div className="absolute inset-0 bg-april-fuchsia opacity-20 pointer-events-none z-20"></div>
+          
+          {/* Add a larger clickable area that opens the map in a new tab */}
+          <a 
+            href={mapUrl} 
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={`פתח מפה ל${name} בגוגל מפות`}
+            className="absolute inset-0 z-30 cursor-pointer"
+          >
+            <span className="sr-only">פתח במפות</span>
+          </a>
         </div>
       ) : (
         <div className="w-full h-full flex flex-col items-center justify-center text-april-fuchsia">

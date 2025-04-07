@@ -53,12 +53,12 @@ const SocialLinks: React.FC<SocialLinksProps> = ({ restaurant, onShare }) => {
     );
   }
 
-  // Add Wolt link ONLY if it exists and isn't "אין" or empty - no fallback to generic Wolt link
+  // Add Wolt link if it exists and isn't "אין" or empty
   if (restaurant.wolt && restaurant.wolt.trim() !== '' && restaurant.wolt.trim() !== 'אין') {
     socialLinks.push(
       <SocialButton 
         key="wolt"
-        href={restaurant.wolt}
+        href={restaurant.wolt.startsWith('http') ? restaurant.wolt : `https://${restaurant.wolt}`}
         ariaLabel="וולט"
       >
         <img 
@@ -69,7 +69,6 @@ const SocialLinks: React.FC<SocialLinksProps> = ({ restaurant, onShare }) => {
       </SocialButton>
     );
   }
-  // No fallback to generic Wolt link, even if delivery is available
 
   // Add Order Link if available and not "אין" or empty
   if (restaurant.orderLink && restaurant.orderLink !== 'אין' && restaurant.orderLink.trim() !== '') {
