@@ -8,7 +8,8 @@ interface ShareHandlerProps {
   };
 }
 
-const ShareHandler: React.FC<ShareHandlerProps> = ({ restaurant }) => {
+// Changed to return a function instead of being a React component
+const ShareHandler = ({ restaurant }: ShareHandlerProps): (() => Promise<void>) => {
   // Function to handle sharing
   const handleShare = async () => {
     const shareData = {

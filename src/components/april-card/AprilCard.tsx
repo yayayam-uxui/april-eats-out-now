@@ -30,7 +30,7 @@ const AprilCard: React.FC<AprilCardProps> = ({ restaurant, onTryAgain, onBack })
     city: restaurant.city
   });
   
-  // Get share handler
+  // Get share handler function
   const handleShare = ShareHandler({ restaurant });
 
   return (
