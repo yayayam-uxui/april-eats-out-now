@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Restaurant } from '@/types/restaurant';
 import { Button } from "@/components/ui/button";
 import { Instagram, MapPin, Share2, ChevronLeft, MapIcon } from "lucide-react";
@@ -16,6 +16,47 @@ const AprilCard: React.FC<AprilCardProps> = ({ restaurant, onTryAgain, onBack })
   // Get character image
   const characterImage = getCharacterImage(restaurant.character);
   
+  // State for map URL
+  const [mapEmbedUrl, setMapEmbedUrl] = useState<string | null>(null);
+  
+  // Extract and construct Google Maps embed URL
+  useEffect(() => {
+    if (restaurant.maps) {
+      try {
+        // Attempt to extract location data from Google Maps URL
+        const url = new URL(restaurant.maps);
+        const params = new URLSearchParams(url.search);
+        
+        // For URLs with query parameters (most common format)
+        if (params.has('q') || params.has('query')) {
+          const query = params.get('q') || params.get('query') || '';
+          setMapEmbedUrl(`https://www.google.com/maps/embed/v1/place?key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8&q=${encodeURIComponent(query)}`);
+        }
+        // For URLs with place IDs
+        else if (restaurant.maps.includes('/place/')) {
+          const placeMatch = restaurant.maps.match(/\/place\/([^\/]+)/);
+          if (placeMatch && placeMatch[1]) {
+            setMapEmbedUrl(`https://www.google.com/maps/embed/v1/place?key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8&q=${encodeURIComponent(placeMatch[1])}`);
+          } else {
+            // If we can't extract place ID, use restaurant name and city as fallback
+            const searchQuery = `${restaurant.name} ${restaurant.city}`.trim();
+            setMapEmbedUrl(`https://www.google.com/maps/embed/v1/place?key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8&q=${encodeURIComponent(searchQuery)}`);
+          }
+        }
+        // Fallback to restaurant name and address
+        else {
+          const searchQuery = `${restaurant.name} ${restaurant.city}`.trim();
+          setMapEmbedUrl(`https://www.google.com/maps/embed/v1/place?key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8&q=${encodeURIComponent(searchQuery)}`);
+        }
+      } catch (err) {
+        console.error('Error parsing maps URL:', err);
+        // Fallback to restaurant name and city
+        const searchQuery = `${restaurant.name} ${restaurant.city}`.trim();
+        setMapEmbedUrl(`https://www.google.com/maps/embed/v1/place?key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8&q=${encodeURIComponent(searchQuery)}`);
+      }
+    }
+  }, [restaurant.maps, restaurant.name, restaurant.city]);
+
   // Function to handle sharing
   const handleShare = async () => {
     const shareData = {
@@ -178,18 +219,25 @@ const AprilCard: React.FC<AprilCardProps> = ({ restaurant, onTryAgain, onBack })
             </button>
           </div>
 
-          {/* Map preview if coordinates are available */}
+          {/* Google Maps embed */}
           {restaurant.maps && (
-            <div className="mb-6 rounded-lg overflow-hidden h-40 bg-gray-100 flex items-center justify-center">
-              <a 
-                href={restaurant.maps} 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="w-full h-full flex flex-col items-center justify-center text-april-fuchsia"
-              >
-                <MapIcon size={32} />
-                <span className="mt-2">פתח במפות</span>
-              </a>
+            <div className="mb-6 rounded-lg overflow-hidden h-48 bg-gray-100">
+              {mapEmbedUrl ? (
+                <iframe
+                  title={`מפה ל${restaurant.name}`}
+                  width="100%"
+                  height="100%"
+                  style={{ border: 0 }}
+                  loading="lazy"
+                  allowFullScreen
+                  src={mapEmbedUrl}
+                ></iframe>
+              ) : (
+                <div className="w-full h-full flex flex-col items-center justify-center text-april-fuchsia">
+                  <MapIcon size={32} />
+                  <span className="mt-2">טוען מפה...</span>
+                </div>
+              )}
             </div>
           )}
 
