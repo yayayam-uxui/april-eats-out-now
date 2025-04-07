@@ -7,8 +7,34 @@ interface RestaurantImageProps {
 }
 
 const RestaurantImage: React.FC<RestaurantImageProps> = ({ image, name }) => {
-  // Return null to remove the image completely
-  return null;
+  const [imageError, setImageError] = useState(false);
+  
+  // If no image is provided, don't render anything
+  if (!image || image === 'default.png') {
+    return null;
+  }
+  
+  // Check if the image is a full URL or just a filename
+  const imageUrl = image.startsWith('http') 
+    ? image 
+    : `/lovable-uploads/${image}`;
+
+  // Fallback image path in case the main image fails to load
+  const fallbackImage = "/placeholder.svg";
+  
+  return (
+    <div className="restaurant-image">
+      <img
+        src={imageError ? fallbackImage : imageUrl}
+        alt={`${name} - תמונה`}
+        className="w-full h-48 object-cover rounded-t-2xl"
+        onError={() => {
+          console.log('Failed to load restaurant image:', imageUrl);
+          setImageError(true);
+        }}
+      />
+    </div>
+  );
 };
 
 export default RestaurantImage;

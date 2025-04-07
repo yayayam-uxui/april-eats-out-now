@@ -18,6 +18,8 @@ export async function getAllRestaurants(): Promise<Restaurants> {
     
     // Transform the raw data into our Restaurant type
     const restaurants: Restaurants = rawData.map((item: any) => {
+      // Log image data for debugging
+      console.log(`Restaurant ${item["שם המקום"]} - Image:`, item["שם תמונה מתאימה"]);
       // Log Wolt data for debugging
       console.log(`Restaurant ${item["שם המקום"]} - Wolt link:`, item["לינק לוולט"]);
       
@@ -35,7 +37,7 @@ export async function getAllRestaurants(): Promise<Restaurants> {
         aprilQuote: item["משפט"] || "",
         character: item["תמונה מתאימה"] || "default.png",
         city: item["עיר"] || "",
-        image: item["שם תמונה מתאימה"] || "default.png",
+        image: item["שם תמונה מתאימה"] || "",
         website: item["אתר"] || "",
         orderLink: item["לינק להזמנות - לא וולט"] || ""
       };
