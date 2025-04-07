@@ -64,18 +64,18 @@ const WelcomeScreen: React.FC<WelcomeScreenProps> = ({
               <SelectTrigger 
                 className="w-full text-right border-2 rounded-lg py-6"
               >
-                <SelectValue placeholder="כל הערים" className="text-right" />
+                <SelectValue placeholder="כל הערים" />
               </SelectTrigger>
-              <SelectContent position="item-aligned" className="bg-card text-right">
+              <SelectContent position="item-aligned" className="bg-white text-right">
                 {cities.length > 0 ? (
                   <>
-                    <SelectItem value="all" className="text-right">כל הערים</SelectItem>
+                    <SelectItem value="all" className="text-right flex justify-end">כל הערים</SelectItem>
                     {cities.map((city) => (
-                      <SelectItem key={city} value={city} className="text-right">{city}</SelectItem>
+                      <SelectItem key={city} value={city} className="text-right flex justify-end">{city}</SelectItem>
                     ))}
                   </>
                 ) : (
-                  <SelectItem value="all" className="text-right">טוען ערים...</SelectItem>
+                  <SelectItem value="all" className="text-right flex justify-end">טוען ערים...</SelectItem>
                 )}
               </SelectContent>
             </Select>
