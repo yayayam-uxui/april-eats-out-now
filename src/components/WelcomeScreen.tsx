@@ -40,8 +40,8 @@ const WelcomeScreen: React.FC<WelcomeScreenProps> = ({
           />
         </a>
         
-        {/* April Kot Image */}
-        <div className="w-44 h-44 mb-8 animate-bounce-slight">
+        {/* April Kot Image - Making it bigger */}
+        <div className="w-64 h-64 mb-8 animate-bounce-slight">
           <img 
             src="/lovable-uploads/618e3371-cde8-4060-ba50-51efc3c4d6ba.png" 
             alt="April Kot" 
