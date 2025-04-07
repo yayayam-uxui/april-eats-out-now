@@ -24,7 +24,7 @@ const WelcomeScreen: React.FC<WelcomeScreenProps> = ({
   onCityChange 
 }) => {
   return (
-    <div className="flex flex-col items-center justify-between h-screen overflow-hidden bg-april-background px-4">
+    <div className="flex flex-col items-center justify-between min-h-screen overflow-hidden bg-april-background px-4 py-6">
       <div className="w-full pt-10 flex justify-center">
         {/* Logo with link to Apricot Labs website */}
         <a 
@@ -50,7 +50,7 @@ const WelcomeScreen: React.FC<WelcomeScreenProps> = ({
         />
       </div>
 
-      <div className="w-full max-w-md flex flex-col justify-center mb-10">
+      <div className="w-full max-w-md flex flex-col justify-center mb-16">
         <div className="p-6 bg-card text-card-foreground rounded-lg shadow-sm mb-5 transition-all duration-300 hover:shadow-md" dir="rtl">
           <h2 className="text-xl font-bold mb-4 text-center">
             <span className="mr-2">היי, אני אפריל קוט</span>

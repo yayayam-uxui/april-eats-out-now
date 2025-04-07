@@ -44,9 +44,9 @@ const AprilCard: React.FC<AprilCardProps> = ({ restaurant, onTryAgain, onBack })
   const tags = restaurant.tags ? restaurant.tags.split(',').map(tag => tag.trim()) : [];
 
   return (
-    <div className="flex flex-col gap-6 min-h-screen">
+    <div className="flex flex-col gap-6 min-h-screen py-6 px-4">
       {/* Logo and header */}
-      <div className="flex items-center justify-between pt-6 px-4">
+      <div className="flex items-center justify-between pt-6">
         <button 
           onClick={onBack}
           className="p-2 rounded-full bg-april-fuchsia text-white transition-all hover:bg-opacity-90"
@@ -85,7 +85,7 @@ const AprilCard: React.FC<AprilCardProps> = ({ restaurant, onTryAgain, onBack })
         </div>
       </div>
 
-      <Card className="overflow-hidden border-0 rounded-2xl shadow-lg mx-4 mb-6 bg-white fade-in animate-enter">
+      <Card className="overflow-hidden border-0 rounded-2xl shadow-lg mx-auto mb-16 bg-white fade-in animate-enter">
         {/* Restaurant hero image */}
         {restaurant.image && (
           <div className="w-full h-48 bg-muted overflow-hidden">
