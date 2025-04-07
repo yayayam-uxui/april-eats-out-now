@@ -11,39 +11,32 @@ const RestaurantImage: React.FC<RestaurantImageProps> = ({ image, name }) => {
   
   // If no image is provided, don't render anything
   if (!image) {
+    console.log(`No image provided for restaurant: ${name}`);
     return null;
   }
   
   // Don't try to load "default.png" or empty strings
   if (image === 'default.png' || image === '') {
+    console.log(`Default or empty image for restaurant: ${name}, not displaying`);
     return null;
   }
   
-  // Create the correct image URL based on the image value
-  // First check if it already includes the path or is a full URL
-  let imageUrl;
+  // The image should already be properly mapped in getRandomFromSheet.ts
+  // But let's make sure it has the correct path format
   
-  if (image.startsWith('/lovable-uploads/') || image.startsWith('http')) {
-    imageUrl = image;
-  } else {
-    // Check if the image is one of our mapped images or just a filename
-    const mappedImagePath = `/lovable-uploads/${image}`;
-    imageUrl = mappedImagePath;
-  }
-
   // Fallback image path in case the main image fails to load
   const fallbackImage = "/placeholder.svg";
   
-  console.log('Trying to load restaurant image:', imageUrl, 'for restaurant:', name);
+  console.log(`Displaying image for ${name}:`, image);
   
   return (
     <div className="restaurant-image">
       <img
-        src={imageError ? fallbackImage : imageUrl}
+        src={imageError ? fallbackImage : image}
         alt={`${name} - תמונה`}
         className="w-full h-48 object-cover rounded-t-2xl"
         onError={(e) => {
-          console.log('Failed to load restaurant image:', imageUrl, 'for restaurant:', name);
+          console.log('Failed to load restaurant image:', image, 'for restaurant:', name);
           setImageError(true);
         }}
       />
