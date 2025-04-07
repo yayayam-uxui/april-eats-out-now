@@ -32,7 +32,8 @@ export async function getAllRestaurants(): Promise<Restaurants> {
       character: item["תמונה מתאימה\n"] || "default.png",
       city: item["עיר"] || "",
       image: item["תמונה"] || "",
-      website: item["אתר"] || ""
+      website: item["אתר"] || "",
+      orderLink: item["לינק להזמנות - לא וולט"] || ""
     }));
     
     console.log("Transformed restaurant data:", restaurants);

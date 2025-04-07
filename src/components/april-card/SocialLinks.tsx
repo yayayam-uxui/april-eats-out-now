@@ -13,7 +13,7 @@ const SocialLinks: React.FC<SocialLinksProps> = ({ restaurant, onShare }) => {
   const socialLinks = [];
 
   // Add Instagram if available
-  if (restaurant.instagram) {
+  if (restaurant.instagram && restaurant.instagram !== 'אין') {
     socialLinks.push(
       <a 
         key="instagram"
@@ -29,7 +29,7 @@ const SocialLinks: React.FC<SocialLinksProps> = ({ restaurant, onShare }) => {
   }
   
   // Add Website if available
-  if (restaurant.website) {
+  if (restaurant.website && restaurant.website !== 'אין') {
     socialLinks.push(
       <a 
         key="website"
@@ -45,7 +45,7 @@ const SocialLinks: React.FC<SocialLinksProps> = ({ restaurant, onShare }) => {
   }
   
   // Add Google Maps if available
-  if (restaurant.maps) {
+  if (restaurant.maps && restaurant.maps !== 'אין') {
     socialLinks.push(
       <a 
         key="maps"
