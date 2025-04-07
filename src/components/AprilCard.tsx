@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { ChevronLeft, Clock, Truck, MapPin, MapIcon } from "lucide-react";
 import { getCharacterImage } from '@/utils/getRandomFromSheet';
 import { Card } from "@/components/ui/card";
-import SocialLinks from './april-card/SocialLinks';
+import SocialLinks from './april-card/social-links';
 
 interface AprilCardProps {
   restaurant: Restaurant;

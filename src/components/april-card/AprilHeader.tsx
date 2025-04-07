@@ -25,6 +25,7 @@ const AprilHeader: React.FC<AprilHeaderProps> = ({ onBack }) => {
         onClick={onBack}
         className="april-social-button w-12 h-12 flex items-center justify-center"
         aria-label="חזרה"
+        type="button"
       >
         <ChevronLeft size={24} />
       </button>

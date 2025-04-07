@@ -65,7 +65,7 @@ const WelcomeScreen: React.FC<WelcomeScreenProps> = ({
                 className="w-full text-right border-2 rounded-lg py-6 flex flex-row-reverse justify-between"
                 dir="rtl"
               >
-                <SelectValue placeholder="כל הערים" />
+                <SelectValue placeholder="כל הערים" className="text-right flex justify-end" />
               </SelectTrigger>
               <SelectContent align="end" className="bg-white text-right" dir="rtl" sideOffset={8}>
                 {cities.length > 0 ? (
