@@ -31,7 +31,7 @@ export async function getAllRestaurants(): Promise<Restaurants> {
       aprilQuote: item["משפט"] || "",
       character: item["תמונה מתאימה\n"] || "default.png",
       city: item["עיר"] || "",
-      image: item["תמונה"] || "",
+      image: item["שם תמונה מתאימה"] || "default.png",
       website: item["אתר"] || "",
       orderLink: item["לינק להזמנות - לא וולט"] || ""
     }));

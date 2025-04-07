@@ -1,73 +1,39 @@
-# Welcome to your Lovable project
 
-## Project info
+# 🍑 April Eats Out – Your Sassy Foodie Guide
 
-**URL**: https://lovable.dev/projects/6841ca94-4399-4227-bc03-a7fe5ea00289
+Welcome to **April Eats Out** – a playful, stylish food discovery app powered by real recommendations and real sass. Think of April as your foodie bestie, helping you decide *where to eat* based on curated lists, fun vibes, and mood-based guidance.
 
-## How can I edit this code?
+---
 
-There are several ways of editing your application.
+## 💡 What It Does
 
-**Use Lovable**
+- Recommends restaurants based on your location and mood
+- Connects to a live Google Sheet with up-to-date content
+- Supports RTL (Hebrew) layout and sassy one-liners
+- Includes delivery buttons (Wolt / non-Wolt), Instagram, Maps, and more
+- Visuals change based on the experience (coffee, burgers, cookies 🍪)
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/6841ca94-4399-4227-bc03-a7fe5ea00289) and start prompting.
+---
 
-Changes made via Lovable will be committed automatically to this repo.
+## 🧠 Tech Stack
 
-**Use your preferred IDE**
+- React + TypeScript
+- Tailwind CSS
+- Radix UI
+- Google Sheets as CMS (via OpenSheet)
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+---
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+## 🚀 Getting Started
 
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
+```bash
+git clone https://github.com/yayayam-uxui/april-eats-out-now.git
+cd april-eats-out-now
+npm install
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+---
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
-
-**Use GitHub Codespaces**
-
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
-
-## What technologies are used for this project?
-
-This project is built with:
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/6841ca94-4399-4227-bc03-a7fe5ea00289) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes it is!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+## ✍️ Built by Apricot Labs  
+Designed with love, sass, and a lot of good food.
