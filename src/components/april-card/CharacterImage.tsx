@@ -12,7 +12,7 @@ const CharacterImage: React.FC<CharacterImageProps> = ({ imageSrc }) => {
         <img 
           src={imageSrc} 
           alt="April Kot" 
-          className="w-full h-full object-contain scale-125"
+          className="w-full h-full object-contain scale-150" // Increased from scale-125 to scale-150
           onError={(e) => {
             // Fallback if image doesn't exist
             const target = e.target as HTMLImageElement;

@@ -46,7 +46,7 @@ const WelcomeScreen: React.FC<WelcomeScreenProps> = ({
         <img 
           src="/lovable-uploads/618e3371-cde8-4060-ba50-51efc3c4d6ba.png" 
           alt="April Kot" 
-          className="w-full h-full object-contain scale-125"
+          className="w-full h-full object-contain scale-150" // Increased from scale-125 to scale-150
         />
       </div>
 
