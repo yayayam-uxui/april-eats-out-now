@@ -53,22 +53,21 @@ const SocialLinks: React.FC<SocialLinksProps> = ({ restaurant, onShare }) => {
     );
   }
 
-  // Fixed Wolt button logic with improved logging and debug info
-  console.log("Wolt link check:", {
-    link: restaurant.wolt,
-    type: typeof restaurant.wolt,
-    isEmpty: !restaurant.wolt,
-    isAin: restaurant.wolt === 'אין',
-    isTrimEmpty: restaurant.wolt?.trim() === ''
+  // Fixed Wolt button with more lenient URL checking
+  console.log("Wolt link info:", {
+    hasWoltProperty: !!restaurant.wolt,
+    woltValue: restaurant.wolt,
+    isEmpty: !restaurant.wolt?.trim(),
+    isAin: restaurant.wolt === 'אין'
   });
   
-  // Improved logic to add Wolt button - less strict checking
-  if (restaurant.wolt && restaurant.wolt.trim() !== '' && restaurant.wolt !== 'אין') {
+  // Improved Wolt button logic - simplified check
+  if (restaurant.wolt && restaurant.wolt !== 'אין') {
     console.log("Adding Wolt button with link:", restaurant.wolt);
     
     // Ensure the link has proper protocol
-    let formattedWoltLink = restaurant.wolt;
-    if (!formattedWoltLink.includes('://')) {
+    let formattedWoltLink = restaurant.wolt.trim();
+    if (!formattedWoltLink.startsWith('http')) {
       formattedWoltLink = `https://${formattedWoltLink}`;
     }
     
@@ -85,12 +84,6 @@ const SocialLinks: React.FC<SocialLinksProps> = ({ restaurant, onShare }) => {
         />
       </SocialButton>
     );
-  } else {
-    console.log("Not adding Wolt button because conditions not met:", { 
-      hasWolt: !!restaurant.wolt,
-      isNotAin: restaurant.wolt !== 'אין',
-      isNotEmpty: restaurant.wolt?.trim() !== ''
-    });
   }
 
   // Add Order Link if available and not "אין" or empty
