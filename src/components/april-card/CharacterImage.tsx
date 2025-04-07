@@ -17,12 +17,12 @@ const CharacterImage: React.FC<CharacterImageProps> = ({ imageSrc }) => {
   const displayImage = (imageError && imageSrc === attemptedImage) ? defaultImage : imageSrc;
 
   return (
-    <div className="flex justify-center relative mb-8">
-      <div className="april-image-container animate-bounce-slight">
+    <div className="flex justify-center relative mb-10">
+      <div className="absolute -bottom-5">
         <img 
           src={displayImage} 
           alt="April Kot" 
-          className="w-full h-full object-contain scale-150"
+          className="w-36 h-36 object-contain"
           onError={(e) => {
             console.log("Image failed to load:", imageSrc);
             setAttemptedImage(imageSrc);

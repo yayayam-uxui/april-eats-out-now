@@ -34,41 +34,43 @@ const AprilCard: React.FC<AprilCardProps> = ({ restaurant, onTryAgain, onBack })
   const handleShare = ShareHandler({ restaurant });
 
   return (
-    <div className="flex flex-col gap-4 min-h-screen py-6 px-4 pb-10" dir="rtl">
+    <div className="flex flex-col min-h-screen py-6 px-4 pb-10" dir="rtl">
       {/* Logo and header with proper positioning */}
       <AprilHeader onBack={onBack} />
 
-      {/* Character image outside the card with more bottom margin */}
-      <CharacterImage imageSrc={characterImage} />
-
-      <Card className="overflow-hidden border-0 rounded-2xl shadow-lg mx-auto mb-16 bg-white fade-in animate-enter">
-        {/* Restaurant image if available */}
-        {restaurant.image && (
-          <RestaurantImage image={restaurant.image} name={restaurant.name} />
-        )}
-
-        {/* Card content */}
-        <div className="p-6 text-right">
-          {/* Restaurant header info */}
-          <RestaurantHeader restaurant={restaurant} />
-
-          {/* Social links - updated component with proper spacing */}
-          <SocialLinks restaurant={restaurant} onShare={handleShare} />
-
-          {/* Google Maps embed */}
-          {restaurant.maps && (
-            <LocationMap 
-              mapUrl={restaurant.maps} 
-              name={restaurant.name} 
-              city={restaurant.city} 
-              mapEmbedUrl={mapEmbedUrl}
-            />
+      <div className="relative pb-10 pt-4">
+        {/* Character image positioned above the card */}
+        <CharacterImage imageSrc={characterImage} />
+        
+        <Card className="overflow-hidden border-0 rounded-2xl shadow-lg mx-auto bg-white fade-in animate-enter mt-5">
+          {/* Restaurant image if available */}
+          {restaurant.image && (
+            <RestaurantImage image={restaurant.image} name={restaurant.name} />
           )}
 
-          {/* Try again button */}
-          <TryAgainButton onClick={onTryAgain} />
-        </div>
-      </Card>
+          {/* Card content */}
+          <div className="p-6 text-right">
+            {/* Restaurant header info */}
+            <RestaurantHeader restaurant={restaurant} />
+
+            {/* Social links - updated component with proper spacing */}
+            <SocialLinks restaurant={restaurant} onShare={handleShare} />
+
+            {/* Google Maps embed */}
+            {restaurant.maps && (
+              <LocationMap 
+                mapUrl={restaurant.maps} 
+                name={restaurant.name} 
+                city={restaurant.city} 
+                mapEmbedUrl={mapEmbedUrl}
+              />
+            )}
+
+            {/* Try again button */}
+            <TryAgainButton onClick={onTryAgain} />
+          </div>
+        </Card>
+      </div>
     </div>
   );
 };
