@@ -16,7 +16,7 @@ const CharacterImage: React.FC<CharacterImageProps> = ({ imageSrc }) => {
         <img 
           src="/lovable-uploads/bdcca772-60da-46da-8de8-2b388085ef94.png"
           alt="April Character Default" 
-          className="w-36 h-36 object-contain"
+          className="w-[150px] h-[150px] object-contain"
         />
       </div>
     );
@@ -27,7 +27,7 @@ const CharacterImage: React.FC<CharacterImageProps> = ({ imageSrc }) => {
       <img 
         src={imageSrc} 
         alt="April Character" 
-        className="w-36 h-36 object-contain"
+        className="w-[150px] h-[150px] object-contain"
         onError={() => setImageError(true)} 
       />
     </div>
