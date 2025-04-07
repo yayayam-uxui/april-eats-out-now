@@ -1,4 +1,3 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700&display=swap');
 
 @tailwind base;
@@ -101,6 +100,7 @@
   }
 }
 
+/* Standardized component styles */
 .april-card {
   @apply bg-white rounded-xl shadow-lg p-6 w-full max-w-md transition-all duration-300 hover:shadow-xl;
 }
@@ -108,6 +108,30 @@
 .april-button {
   @apply bg-april-fuchsia text-white font-medium py-3 px-6 rounded-full transition-all duration-300 
   hover:bg-opacity-90 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-april-fuchsia focus:ring-opacity-50;
+}
+
+.april-container {
+  @apply w-full max-w-md mx-auto px-4;
+}
+
+.april-image-container {
+  @apply w-64 h-64 mx-auto;
+}
+
+.april-header {
+  @apply w-full pt-10 flex justify-center;
+}
+
+.april-tag {
+  @apply px-3 py-1 bg-gray-100 text-gray-600 rounded-full text-sm;
+}
+
+.april-social-button {
+  @apply p-3 rounded-full bg-april-fuchsia text-white transition-all hover:bg-opacity-90;
+}
+
+.april-map-container {
+  @apply mb-6 rounded-lg overflow-hidden h-48 bg-gray-100;
 }
 
 /* Add new animations for card transitions */

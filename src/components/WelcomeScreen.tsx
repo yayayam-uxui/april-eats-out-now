@@ -24,8 +24,8 @@ const WelcomeScreen: React.FC<WelcomeScreenProps> = ({
   onCityChange 
 }) => {
   return (
-    <div className="flex flex-col items-center justify-between min-h-screen overflow-hidden bg-april-background px-4 py-6">
-      <div className="w-full pt-10 flex justify-center">
+    <div className="flex flex-col items-center justify-between min-h-screen overflow-hidden bg-april-background px-4 py-6 pb-10">
+      <div className="april-header">
         {/* Logo with link to Apricot Labs website */}
         <a 
           href="https://www.theapricotlabs.com/" 
@@ -41,8 +41,8 @@ const WelcomeScreen: React.FC<WelcomeScreenProps> = ({
         </a>
       </div>
       
-      {/* April Kot Image - Big size */}
-      <div className="w-64 h-64 animate-bounce-slight">
+      {/* April Kot Image */}
+      <div className="april-image-container animate-bounce-slight">
         <img 
           src="/lovable-uploads/618e3371-cde8-4060-ba50-51efc3c4d6ba.png" 
           alt="April Kot" 
@@ -50,7 +50,7 @@ const WelcomeScreen: React.FC<WelcomeScreenProps> = ({
         />
       </div>
 
-      <div className="w-full max-w-md flex flex-col justify-center mb-16">
+      <div className="april-container flex flex-col justify-center mb-16">
         <div className="p-6 bg-card text-card-foreground rounded-lg shadow-sm mb-5 transition-all duration-300 hover:shadow-md" dir="rtl">
           <h2 className="text-xl font-bold mb-4 text-center">
             <span className="mr-2">היי, אני אפריל קוט</span>

@@ -85,12 +85,12 @@ const AprilCard: React.FC<AprilCardProps> = ({ restaurant, onTryAgain, onBack })
   const tags = restaurant.tags ? restaurant.tags.split(',').map(tag => tag.trim()) : [];
 
   return (
-    <div className="flex flex-col gap-6 min-h-screen py-6 px-4">
+    <div className="flex flex-col gap-6 min-h-screen py-6 px-4 pb-10">
       {/* Logo and header */}
       <div className="flex items-center justify-between pt-6">
         <button 
           onClick={onBack}
-          className="p-2 rounded-full bg-april-fuchsia text-white transition-all hover:bg-opacity-90"
+          className="april-social-button"
           aria-label="חזרה"
         >
           <ChevronLeft size={20} />
@@ -111,7 +111,7 @@ const AprilCard: React.FC<AprilCardProps> = ({ restaurant, onTryAgain, onBack })
 
       {/* April's avatar */}
       <div className="flex justify-center relative">
-        <div className="w-64 h-64 animate-bounce-slight">
+        <div className="april-image-container animate-bounce-slight">
           <img 
             src={characterImage} 
             alt="April Kot" 
@@ -160,7 +160,7 @@ const AprilCard: React.FC<AprilCardProps> = ({ restaurant, onTryAgain, onBack })
                 {tags.map((tag, index) => (
                   <span 
                     key={index} 
-                    className="px-3 py-1 bg-gray-100 text-gray-600 rounded-full text-sm"
+                    className="april-tag"
                   >
                     #{tag}
                   </span>
@@ -176,7 +176,7 @@ const AprilCard: React.FC<AprilCardProps> = ({ restaurant, onTryAgain, onBack })
                 href={restaurant.instagram} 
                 target="_blank" 
                 rel="noopener noreferrer" 
-                className="p-3 rounded-full bg-april-fuchsia text-white transition-all hover:bg-opacity-90"
+                className="april-social-button"
                 aria-label="אינסטגרם"
               >
                 <Instagram size={20} />
@@ -188,7 +188,7 @@ const AprilCard: React.FC<AprilCardProps> = ({ restaurant, onTryAgain, onBack })
                 href={restaurant.maps} 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="p-3 rounded-full bg-april-fuchsia text-white transition-all hover:bg-opacity-90"
+                className="april-social-button"
                 aria-label="גוגל מפות"
               >
                 <MapPin size={20} />
@@ -200,7 +200,7 @@ const AprilCard: React.FC<AprilCardProps> = ({ restaurant, onTryAgain, onBack })
                 href={restaurant.wolt} 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="p-3 rounded-full bg-april-fuchsia text-white transition-all hover:bg-opacity-90"
+                className="april-social-button"
                 aria-label="וולט"
               >
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -212,7 +212,7 @@ const AprilCard: React.FC<AprilCardProps> = ({ restaurant, onTryAgain, onBack })
 
             <button 
               onClick={handleShare}
-              className="p-3 rounded-full bg-april-fuchsia text-white transition-all hover:bg-opacity-90"
+              className="april-social-button"
               aria-label="שתף"
             >
               <Share2 size={20} />
@@ -221,7 +221,7 @@ const AprilCard: React.FC<AprilCardProps> = ({ restaurant, onTryAgain, onBack })
 
           {/* Google Maps embed */}
           {restaurant.maps && (
-            <div className="mb-6 rounded-lg overflow-hidden h-48 bg-gray-100">
+            <div className="april-map-container">
               {mapEmbedUrl ? (
                 <iframe
                   title={`מפה ל${restaurant.name}`}
