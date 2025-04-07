@@ -38,7 +38,7 @@ const AprilCard: React.FC<AprilCardProps> = ({ restaurant, onTryAgain, onBack })
       {/* Logo and header with proper positioning */}
       <AprilHeader onBack={onBack} />
 
-      {/* Put the character image back outside the card */}
+      {/* Character image outside the card */}
       <CharacterImage imageSrc={characterImage} />
 
       <Card className="overflow-hidden border-0 rounded-2xl shadow-lg mx-auto mb-16 bg-white fade-in animate-enter">
