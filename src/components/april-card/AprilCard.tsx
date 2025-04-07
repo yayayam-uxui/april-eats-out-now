@@ -38,11 +38,11 @@ const AprilCard: React.FC<AprilCardProps> = ({ restaurant, onTryAgain, onBack })
       {/* Logo and header with proper positioning */}
       <AprilHeader onBack={onBack} />
 
-      <div className="relative pb-10 pt-32">
-        {/* Character image positioned above the card with more space */}
+      <div className="flex flex-col items-center py-8">
+        {/* Character image as a regular element in the flow, not absolutely positioned */}
         <CharacterImage imageSrc={characterImage} />
         
-        <Card className="overflow-hidden border-0 rounded-2xl shadow-lg mx-auto bg-white fade-in animate-enter mt-16">
+        <Card className="overflow-hidden border-0 rounded-2xl shadow-lg mx-auto bg-white fade-in animate-enter w-full">
           {/* Restaurant image if available */}
           {restaurant.image && (
             <RestaurantImage image={restaurant.image} name={restaurant.name} />
