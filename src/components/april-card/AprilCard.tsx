@@ -38,12 +38,12 @@ const AprilCard: React.FC<AprilCardProps> = ({ restaurant, onTryAgain, onBack })
       {/* Logo and header with proper positioning */}
       <AprilHeader onBack={onBack} />
 
-      {/* April's avatar */}
-      <CharacterImage imageSrc={characterImage} />
+      {/* Remove the CharacterImage component from here since it will be shown in the restaurant image */}
+      {/* We'll use the RestaurantImage component to show the character image instead */}
 
       <Card className="overflow-hidden border-0 rounded-2xl shadow-lg mx-auto mb-16 bg-white fade-in animate-enter">
-        {/* Restaurant hero image - removed */}
-        <RestaurantImage image={restaurant.image} name={restaurant.name} />
+        {/* Restaurant hero image will now show the character image */}
+        <RestaurantImage image={characterImage} name={restaurant.name} />
 
         {/* Card content */}
         <div className="p-6 text-right">
