@@ -18,8 +18,10 @@ export async function getAllRestaurants(): Promise<Restaurants> {
     
     // Transform the raw data into our Restaurant type
     const restaurants: Restaurants = rawData.map((item: any) => {
-      // Log image data for debugging
-      console.log(`Restaurant ${item["שם המקום"]} - Image:`, item["שם תמונה מתאימה"]);
+      // Extract image filename from the sheet and log it for debugging
+      const imageFileName = item["שם תמונה מתאימה"] || "";
+      console.log(`Restaurant ${item["שם המקום"]} - Image filename:`, imageFileName);
+      
       // Log Wolt data for debugging
       console.log(`Restaurant ${item["שם המקום"]} - Wolt link:`, item["לינק לוולט"]);
       
@@ -37,7 +39,7 @@ export async function getAllRestaurants(): Promise<Restaurants> {
         aprilQuote: item["משפט"] || "",
         character: item["תמונה מתאימה"] || "default.png",
         city: item["עיר"] || "",
-        image: item["שם תמונה מתאימה"] || "",
+        image: imageFileName,  // Store the raw image filename exactly as it appears in the sheet
         website: item["אתר"] || "",
         orderLink: item["לינק להזמנות - לא וולט"] || ""
       };
@@ -122,7 +124,7 @@ export function getCharacterImage(characterName: string): string {
     "default": "/lovable-uploads/bdcca772-60da-46da-8de8-2b388085ef94.png",
     "beta.png": "/lovable-uploads/bdcca772-60da-46da-8de8-2b388085ef94.png",  // Added for Beta cafe
     "beta": "/lovable-uploads/bdcca772-60da-46da-8de8-2b388085ef94.png",       // Added without extension
-    // הוספת מיפויים חדשים לתמונות שהועלו
+    // New mappings for April images
     "bbq_april": "/lovable-uploads/d900efb1-bb87-41f3-ba74-7042158c507b.png",
     "burger_april": "/lovable-uploads/cc012936-bcba-403f-9524-4d1defb9d5b5.png",
     "cafe_april": "/lovable-uploads/85b09cf2-41e8-4dab-a03c-94b7b81d00b8.png",

@@ -19,15 +19,22 @@ const RestaurantImage: React.FC<RestaurantImageProps> = ({ image, name }) => {
     return null;
   }
   
-  // Check if the image is a newly uploaded image or a URL
-  const imageUrl = image.startsWith('/lovable-uploads/') || image.startsWith('http')
-    ? image 
-    : `/lovable-uploads/${image}`;
+  // Create the correct image URL based on the image value
+  // First check if it already includes the path or is a full URL
+  let imageUrl;
+  
+  if (image.startsWith('/lovable-uploads/') || image.startsWith('http')) {
+    imageUrl = image;
+  } else {
+    // Check if the image is one of our mapped images or just a filename
+    const mappedImagePath = `/lovable-uploads/${image}`;
+    imageUrl = mappedImagePath;
+  }
 
   // Fallback image path in case the main image fails to load
   const fallbackImage = "/placeholder.svg";
   
-  console.log('Trying to load restaurant image:', imageUrl);
+  console.log('Trying to load restaurant image:', imageUrl, 'for restaurant:', name);
   
   return (
     <div className="restaurant-image">
@@ -36,7 +43,7 @@ const RestaurantImage: React.FC<RestaurantImageProps> = ({ image, name }) => {
         alt={`${name} - תמונה`}
         className="w-full h-48 object-cover rounded-t-2xl"
         onError={(e) => {
-          console.log('Failed to load restaurant image:', imageUrl);
+          console.log('Failed to load restaurant image:', imageUrl, 'for restaurant:', name);
           setImageError(true);
         }}
       />
