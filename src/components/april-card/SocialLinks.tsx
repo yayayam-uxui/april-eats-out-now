@@ -47,7 +47,7 @@ const SocialLinks: React.FC<SocialLinksProps> = ({ restaurant, onShare }) => {
         </a>
       )}
 
-      {/* Wolt delivery link with simple icon */}
+      {/* Wolt delivery link with improved styling */}
       {(restaurant.wolt || (restaurant.delivery && 
          restaurant.delivery.toLowerCase() !== "אין" && 
          restaurant.delivery.toLowerCase() !== "לא")) && (
@@ -58,8 +58,8 @@ const SocialLinks: React.FC<SocialLinksProps> = ({ restaurant, onShare }) => {
           className="april-social-button"
           aria-label="וולט"
         >
-          {/* Simple "W" icon that matches the design */}
-          <span className="font-bold text-white">W</span>
+          {/* Improved Wolt "W" styling */}
+          <div className="flex items-center justify-center font-bold text-lg">W</div>
         </a>
       )}
 
