@@ -67,9 +67,9 @@ export default {
 					ring: 'hsl(var(--sidebar-ring))'
 				},
 				april: {
-					background: '#FEF7EF',
-					fuchsia: '#EC4899',
-					text: '#2E2E2E',
+					background: 'hsl(var(--april-background))',
+					fuchsia: 'hsl(var(--april-fuchsia))',
+					text: 'hsl(var(--april-text))',
 				}
 			},
 			borderRadius: {

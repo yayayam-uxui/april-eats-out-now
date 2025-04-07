@@ -15,9 +15,9 @@ const AprilCard: React.FC<AprilCardProps> = ({ restaurant, onTryAgain }) => {
   const characterImage = getCharacterImage(restaurant.character);
 
   return (
-    <div className="april-card flex flex-col gap-6 mx-auto">
+    <div className="bg-card text-card-foreground rounded-lg shadow-lg flex flex-col gap-6 mx-auto p-6 transition-all duration-300 hover:shadow-xl">
       <div className="flex items-center justify-between">
-        <div className="w-28 h-28 relative">
+        <div className="w-28 h-28 relative animate-bounce-slight">
           <img 
             src={characterImage} 
             alt="April Kot" 
@@ -35,7 +35,7 @@ const AprilCard: React.FC<AprilCardProps> = ({ restaurant, onTryAgain }) => {
           <p className="text-lg font-medium italic mb-2 text-center">"{restaurant.aprilQuote}"</p>
           <h2 className="text-2xl font-bold text-center">{restaurant.name}</h2>
           {restaurant.city && (
-            <p className="text-sm text-gray-600 mt-1 text-center">{restaurant.city}</p>
+            <p className="text-sm text-muted-foreground mt-1 text-center">{restaurant.city}</p>
           )}
         </div>
       </div>
@@ -65,7 +65,11 @@ const AprilCard: React.FC<AprilCardProps> = ({ restaurant, onTryAgain }) => {
       </div>
 
       <div className="mt-4">
-        <Button onClick={onTryAgain} className="april-button w-full" dir="rtl">
+        <Button 
+          onClick={onTryAgain} 
+          className="w-full bg-april-fuchsia text-white font-medium py-3 px-6 rounded-full transition-all duration-300 hover:bg-opacity-90 hover:shadow-md" 
+          dir="rtl"
+        >
           מקום אחר בבקשה ✨
         </Button>
       </div>
