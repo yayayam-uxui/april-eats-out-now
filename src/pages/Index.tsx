@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { Restaurant } from '@/types/restaurant';
 import { getAllRestaurants, getRandomRestaurant, getAllCities } from '@/utils/getRandomFromSheet';
 import WelcomeScreen from '@/components/WelcomeScreen';
-import AprilCard from '@/components/AprilCard';
+import AprilCard from '@/components/april-card';
 import { useToast } from "@/components/ui/use-toast";
 
 const Index = () => {
