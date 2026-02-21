@@ -6,7 +6,6 @@ const SHEET_URL = "https://opensheet.elk.sh/1h1IIi8Ns3j8z2VoLs6Hr-3yl58LV3PhevL_
 
 export async function getAllRestaurants(): Promise<Restaurants> {
   try {
-    console.log("Fetching from:", SHEET_URL);
     const response = await fetch(SHEET_URL);
     if (!response.ok) {
       const errorText = await response.text();
@@ -14,17 +13,11 @@ export async function getAllRestaurants(): Promise<Restaurants> {
       throw new Error("Failed to fetch restaurant data");
     }
     const rawData = await response.json();
-    console.log("Successfully fetched data:", rawData);
-    
+
     // Transform the raw data into our Restaurant type
     const restaurants: Restaurants = rawData.map((item: any) => {
-      // Extract image filename from the sheet and log it for debugging
       const imageFileName = item["שם תמונה מתאימה"] || "";
-      console.log(`Restaurant ${item["שם המקום"]} - Image filename:`, imageFileName);
-      
-      // Log Wolt data for debugging
-      console.log(`Restaurant ${item["שם המקום"]} - Wolt link:`, item["לינק לוולט"]);
-      
+
       return {
         name: item["שם המקום"] || "",
         address: item["כתובת (אופציונלי)"] || "",
@@ -46,7 +39,6 @@ export async function getAllRestaurants(): Promise<Restaurants> {
       };
     });
     
-    console.log("Transformed restaurant data:", restaurants);
     return restaurants;
   } catch (error) {
     console.error("Error fetching restaurant data:", error);
@@ -85,16 +77,12 @@ function getRestaurantImageMapping(imageName: string): string {
     "bbq_april.png": "/lovable-uploads/d900efb1-bb87-41f3-ba74-7042158c507b.png"
   };
 
-  console.log("Looking up image mapping for:", imageName);
   const imageUrl = restaurantImageMap[imageName];
-  
   if (imageUrl) {
-    console.log("Found image mapping:", imageName, "->", imageUrl);
     return imageUrl;
   }
-  
+
   // If not in our mapping, return the original name (might be a direct URL)
-  console.log("No mapping found for:", imageName, "returning original");
   return imageName;
 }
 
@@ -133,12 +121,10 @@ export function getAllCities(restaurants: Restaurants): string[] {
 export function getCharacterImage(characterName: string): string {
   // Match character name to uploaded images - with improved handling
   if (!characterName) {
-    console.log("No character name provided, using default");
     return "/lovable-uploads/bdcca772-60da-46da-8de8-2b388085ef94.png"; // Default April
   }
-  
+
   characterName = characterName.trim().toLowerCase(); // Normalize to lowercase for case-insensitive matching
-  console.log("Getting character image for:", characterName);
   
   // Map of character identifiers to their image paths
   const characterMap: Record<string, string> = {
@@ -186,11 +172,9 @@ export function getCharacterImage(characterName: string): string {
 
   // Check if we have a mapping for this character
   if (characterMap[characterName]) {
-    console.log("Found character image:", characterName, "->", characterMap[characterName]);
     return characterMap[characterName];
   }
-  
-  // If not found in our map, log it and return default
-  console.log("Character image not found:", characterName, "Using default instead");
+
+  // If not found in our map, return default
   return "/lovable-uploads/bdcca772-60da-46da-8de8-2b388085ef94.png"; // Default April
 }
