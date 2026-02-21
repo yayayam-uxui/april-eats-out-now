@@ -1,5 +1,6 @@
 
 import React from 'react';
+import { toast } from 'sonner';
 
 interface ShareHandlerProps {
   restaurant: {
@@ -27,7 +28,7 @@ const ShareHandler = ({ restaurant }: ShareHandlerProps): (() => Promise<void>) 
     } else {
       try {
         await navigator.clipboard.writeText(shareData.text + ' ' + shareData.url);
-        alert('הקישור הועתק ללוח!');
+        toast('הקישור הועתק ללוח!');
       } catch (err) {
         console.error('Failed to copy:', err);
       }

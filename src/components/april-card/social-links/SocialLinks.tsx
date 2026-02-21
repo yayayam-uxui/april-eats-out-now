@@ -53,18 +53,7 @@ const SocialLinks: React.FC<SocialLinksProps> = ({ restaurant, onShare }) => {
     );
   }
 
-  // Fixed Wolt button with more lenient URL checking
-  console.log("Wolt link info:", {
-    hasWoltProperty: !!restaurant.wolt,
-    woltValue: restaurant.wolt,
-    isEmpty: !restaurant.wolt?.trim(),
-    isAin: restaurant.wolt === 'אין'
-  });
-  
-  // Improved Wolt button logic - simplified check
   if (restaurant.wolt && restaurant.wolt !== 'אין') {
-    console.log("Adding Wolt button with link:", restaurant.wolt);
-    
     // Ensure the link has proper protocol
     let formattedWoltLink = restaurant.wolt.trim();
     if (!formattedWoltLink.startsWith('http')) {

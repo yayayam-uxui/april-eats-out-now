@@ -18,31 +18,33 @@ const MapHandler = ({ mapUrl, name, city }: MapHandlerProps): string | null => {
     const params = new URLSearchParams(url.search);
     
     // For URLs with query parameters (most common format)
+    const apiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
     if (params.has('q') || params.get('query')) {
       const query = params.get('q') || params.get('query') || '';
-      return `https://www.google.com/maps/embed/v1/place?key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8&q=${encodeURIComponent(query)}`;
+      return `https://www.google.com/maps/embed/v1/place?key=${apiKey}&q=${encodeURIComponent(query)}`;
     }
     // For URLs with place IDs
     else if (mapUrl.includes('/place/')) {
       const placeMatch = mapUrl.match(/\/place\/([^\/]+)/);
       if (placeMatch && placeMatch[1]) {
-        return `https://www.google.com/maps/embed/v1/place?key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8&q=${encodeURIComponent(placeMatch[1])}`;
+        return `https://www.google.com/maps/embed/v1/place?key=${apiKey}&q=${encodeURIComponent(placeMatch[1])}`;
       } else {
         // If we can't extract place ID, use restaurant name and city as fallback
         const searchQuery = `${name} ${city}`.trim();
-        return `https://www.google.com/maps/embed/v1/place?key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8&q=${encodeURIComponent(searchQuery)}`;
+        return `https://www.google.com/maps/embed/v1/place?key=${apiKey}&q=${encodeURIComponent(searchQuery)}`;
       }
     }
     // Fallback to restaurant name and address
     else {
       const searchQuery = `${name} ${city}`.trim();
-      return `https://www.google.com/maps/embed/v1/place?key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8&q=${encodeURIComponent(searchQuery)}`;
+      return `https://www.google.com/maps/embed/v1/place?key=${apiKey}&q=${encodeURIComponent(searchQuery)}`;
     }
   } catch (err) {
     console.error('Error parsing maps URL:', err);
     // Fallback to restaurant name and city
+    const apiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
     const searchQuery = `${name} ${city}`.trim();
-    return `https://www.google.com/maps/embed/v1/place?key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8&q=${encodeURIComponent(searchQuery)}`;
+    return `https://www.google.com/maps/embed/v1/place?key=${apiKey}&q=${encodeURIComponent(searchQuery)}`;
   }
 };
 
