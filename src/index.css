@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700&family=Karantina:wght@300;400;700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -133,7 +133,18 @@
 }
 
 .april-tag {
-  @apply px-3 py-1 bg-gray-100 text-gray-600 rounded-full text-sm;
+  @apply px-3 py-1 bg-april-teal/10 text-april-teal rounded-full text-sm;
+}
+
+/* Retro diner polka-dot wallpaper */
+.april-wallpaper {
+  background-image: radial-gradient(circle, rgba(232, 134, 46, 0.08) 1.5px, transparent 1.5px);
+  background-size: 22px 22px;
+}
+
+/* Vintage lottery-ticket perforation line */
+.april-perforation {
+  border-bottom: 2px dashed rgba(30, 58, 82, 0.25);
 }
 
 .april-social-button {

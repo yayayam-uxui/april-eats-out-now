@@ -18,6 +18,13 @@ interface AprilCardProps {
   onBack: () => void;
 }
 
+// Stable 3-digit "lottery ticket" number per restaurant
+const ticketNumber = (name: string): string => {
+  let h = 0;
+  for (let i = 0; i < name.length; i++) h = (h * 31 + name.charCodeAt(i)) | 0;
+  return String(100 + (Math.abs(h) % 900));
+};
+
 const AprilCard: React.FC<AprilCardProps> = ({ restaurant, onTryAgain, onBack }) => {
   // Get map embed URL
   const mapEmbedUrl = MapHandler({
@@ -39,14 +46,33 @@ const AprilCard: React.FC<AprilCardProps> = ({ restaurant, onTryAgain, onBack })
           <CharacterImage imageSrc={restaurant.characterSrc} alt={restaurant.characterAlt} />
         </div>
         
-        <Card className="overflow-hidden border-0 rounded-2xl shadow-lg mx-auto bg-white fade-in animate-enter w-full mb-6">
+        <Card className="overflow-visible border-0 rounded-2xl shadow-lg mx-auto bg-white fade-in animate-enter w-full mb-6 relative">
+          {/* Lottery-ticket header */}
+          <div className="relative px-6 pt-4 pb-3 april-perforation">
+            <div className="flex items-center justify-between text-april-navy/60 text-xs font-mono tracking-wider">
+              <span>כרטיס מזל №{ticketNumber(restaurant.name + restaurant.city)}</span>
+              <span>🍑 הגרלה רשמית</span>
+            </div>
+            {/* perforation notches */}
+            <span className="absolute -bottom-[9px] -right-[10px] w-5 h-5 rounded-full bg-april-background" aria-hidden="true"></span>
+            <span className="absolute -bottom-[9px] -left-[10px] w-5 h-5 rounded-full bg-april-background" aria-hidden="true"></span>
+          </div>
+
+          {/* "April approves" stamp */}
+          <div
+            className="absolute top-14 left-4 w-[74px] h-[74px] rounded-full border-2 border-april-orange/70 text-april-orange/80 flex items-center justify-center text-center text-[11px] font-bold leading-tight -rotate-12 pointer-events-none select-none"
+            aria-hidden="true"
+          >
+            אפריל<br />✓<br />מאשרת
+          </div>
+
           {/* Restaurant image if available */}
           {restaurant.image && (
             <RestaurantImage image={restaurant.image} name={restaurant.name} />
           )}
 
           {/* Card content */}
-          <div className="p-6 text-right">
+          <div className="p-6 pt-4 text-right">
             {/* Restaurant header info */}
             <RestaurantHeader restaurant={restaurant} />
 

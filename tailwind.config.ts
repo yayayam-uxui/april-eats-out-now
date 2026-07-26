@@ -21,6 +21,7 @@ export default {
 		extend: {
 			fontFamily: {
 				rubik: ['Rubik', 'sans-serif'],
+				karantina: ['Karantina', 'Rubik', 'sans-serif'],
 			},
 			colors: {
 				border: 'hsl(var(--border))',
@@ -70,6 +71,10 @@ export default {
 					background: 'hsl(var(--april-background))',
 					fuchsia: 'hsl(var(--april-fuchsia))',
 					text: 'hsl(var(--april-text))',
+					navy: '#1E3A52',
+					teal: '#4C8480',
+					gold: '#E8B54A',
+					orange: '#E8862E',
 				}
 			},
 			borderRadius: {

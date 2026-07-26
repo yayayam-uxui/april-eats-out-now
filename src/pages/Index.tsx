@@ -68,7 +68,7 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen bg-april-background flex flex-col items-center" dir="rtl">
+    <div className="min-h-screen bg-april-background april-wallpaper flex flex-col items-center" dir="rtl">
       <div className="w-full max-w-md relative">
         {pendingRestaurant ? (
           <SlotMachine

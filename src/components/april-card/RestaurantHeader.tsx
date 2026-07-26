@@ -13,7 +13,7 @@ const RestaurantHeader: React.FC<RestaurantHeaderProps> = ({ restaurant }) => {
 
   return (
     <div className="mb-6">
-      <h2 className="text-2xl font-bold">{restaurant.name}</h2>
+      <h2 className="font-karantina font-bold text-5xl text-april-navy leading-none mb-1">{restaurant.name}</h2>
       
       {/* Address and city */}
       <div className="flex flex-col gap-1">

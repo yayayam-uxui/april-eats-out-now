@@ -53,13 +53,13 @@ const SlotMachine: React.FC<SlotMachineProps> = ({ targetSrc, targetAlt, onDone 
         {Array.from({ length: 7 }).map((_, i) => (
           <span
             key={i}
-            className="w-2.5 h-2.5 rounded-full bg-april-fuchsia animate-pulse"
+            className="w-2.5 h-2.5 rounded-full bg-april-gold animate-pulse"
             style={{ animationDelay: `${i * 140}ms` }}
           />
         ))}
       </div>
 
-      <div className="bg-white rounded-3xl shadow-xl border-4 border-april-fuchsia p-4 w-full max-w-sm">
+      <div className="bg-white rounded-3xl shadow-xl border-4 border-april-navy p-4 w-full max-w-sm">
         <div className="flex justify-between gap-2" role="img" aria-label={`מגרילה... ${targetAlt}`}>
           {reels.map((strip, r) => (
             <div
@@ -93,7 +93,7 @@ const SlotMachine: React.FC<SlotMachineProps> = ({ targetSrc, targetAlt, onDone 
         </div>
       </div>
 
-      <div className="text-april-fuchsia text-2xl font-bold mt-5 animate-pulse">מגרילה...</div>
+      <div className="font-karantina text-april-navy text-4xl font-bold mt-5 animate-pulse">מגרילה...</div>
     </div>
   );
 };
