@@ -24,11 +24,10 @@ const LocationMap: React.FC<LocationMapProps> = ({ mapUrl, name, city, mapEmbedU
             src={mapEmbedUrl}
             className="relative z-10"
           ></iframe>
-          <div className="absolute inset-0 bg-april-fuchsia opacity-20 pointer-events-none z-20"></div>
-          
+
           {/* Add a larger clickable area that opens the map in a new tab */}
-          <a 
-            href={mapUrl} 
+          <a
+            href={mapUrl || `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${name} ${city}`.trim())}`}
             target="_blank"
             rel="noopener noreferrer"
             aria-label={`פתח מפה ל${name} בגוגל מפות`}

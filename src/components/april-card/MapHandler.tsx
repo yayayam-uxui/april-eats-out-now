@@ -1,51 +1,38 @@
-
-import React, { useEffect, useState } from 'react';
-
 interface MapHandlerProps {
   mapUrl: string;
   name: string;
   city: string;
 }
 
-// Changed to return string | null instead of being a React component
+// Google's public Maps Embed demo key (from their own docs samples). The Embed
+// API is free; set VITE_GOOGLE_MAPS_API_KEY to use a project-owned key instead.
+const FALLBACK_KEY = "AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8";
+
+// Builds a Maps Embed API URL for the restaurant. Returns null when there's
+// nothing to search for.
 const MapHandler = ({ mapUrl, name, city }: MapHandlerProps): string | null => {
-  // Instead of using useState and useEffect, we'll use a more direct approach since this isn't a React component
-  if (!mapUrl) return null;
-  
+  if (!mapUrl && !name) return null;
+
+  const apiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY || FALLBACK_KEY;
+  const embed = (query: string) =>
+    `https://www.google.com/maps/embed/v1/place?key=${apiKey}&language=he&q=${encodeURIComponent(query)}`;
+
   try {
-    // Attempt to extract location data from Google Maps URL
-    const url = new URL(mapUrl);
-    const params = new URLSearchParams(url.search);
-    
-    // For URLs with query parameters (most common format)
-    const apiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
-    if (params.has('q') || params.get('query')) {
-      const query = params.get('q') || params.get('query') || '';
-      return `https://www.google.com/maps/embed/v1/place?key=${apiKey}&q=${encodeURIComponent(query)}`;
-    }
-    // For URLs with place IDs
-    else if (mapUrl.includes('/place/')) {
+    if (mapUrl) {
+      const url = new URL(mapUrl);
+      const params = new URLSearchParams(url.search);
+      const q = params.get("q") || params.get("query");
+      if (q) return embed(q);
+
+      // /place/<name>/ URLs carry the place name in the path
       const placeMatch = mapUrl.match(/\/place\/([^\/]+)/);
-      if (placeMatch && placeMatch[1]) {
-        return `https://www.google.com/maps/embed/v1/place?key=${apiKey}&q=${encodeURIComponent(placeMatch[1])}`;
-      } else {
-        // If we can't extract place ID, use restaurant name and city as fallback
-        const searchQuery = `${name} ${city}`.trim();
-        return `https://www.google.com/maps/embed/v1/place?key=${apiKey}&q=${encodeURIComponent(searchQuery)}`;
-      }
+      if (placeMatch?.[1]) return embed(decodeURIComponent(placeMatch[1]));
     }
-    // Fallback to restaurant name and address
-    else {
-      const searchQuery = `${name} ${city}`.trim();
-      return `https://www.google.com/maps/embed/v1/place?key=${apiKey}&q=${encodeURIComponent(searchQuery)}`;
-    }
-  } catch (err) {
-    console.error('Error parsing maps URL:', err);
-    // Fallback to restaurant name and city
-    const apiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
-    const searchQuery = `${name} ${city}`.trim();
-    return `https://www.google.com/maps/embed/v1/place?key=${apiKey}&q=${encodeURIComponent(searchQuery)}`;
+  } catch {
+    // Short links (g.co/kgs/...) don't parse — fall through to name search
   }
+
+  return embed(`${name} ${city}`.trim());
 };
 
 export default MapHandler;

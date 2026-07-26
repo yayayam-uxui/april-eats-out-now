@@ -66,9 +66,9 @@ const SocialLinks: React.FC<SocialLinksProps> = ({ restaurant, onShare }) => {
         href={formattedWoltLink}
         ariaLabel="וולט"
       >
-        <img 
-          src="/lovable-uploads/0420bfa1-b2a7-4774-b93b-bb0eb577d4db.png" 
-          alt="Wolt" 
+        <img
+          src="/brand/wolt.png"
+          alt="Wolt"
           className="w-5 h-5 object-contain"
         />
       </SocialButton>

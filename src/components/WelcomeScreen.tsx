@@ -9,6 +9,7 @@ import {
   SelectValue 
 } from "@/components/ui/select";
 import { Sparkles } from 'lucide-react';
+import { WELCOME_CHARACTER } from '@/lib/characters';
 
 interface WelcomeScreenProps {
   onGenerateClick: (city?: string) => void;
@@ -24,8 +25,8 @@ const WelcomeScreen: React.FC<WelcomeScreenProps> = ({
   onCityChange 
 }) => {
   return (
-    <div className="flex flex-col items-center justify-between min-h-screen overflow-hidden bg-april-background px-4 py-4" dir="rtl">
-      <div className="april-header mb-4">
+    <div className="flex flex-col items-center min-h-screen overflow-hidden bg-april-background px-4 pb-6" dir="rtl">
+      <div className="april-header mb-2">
         {/* Logo with link to Apricot Labs website */}
         <a 
           href="https://www.theapricotlabs.com/" 
@@ -33,24 +34,26 @@ const WelcomeScreen: React.FC<WelcomeScreenProps> = ({
           rel="noopener noreferrer" 
           className="transition-transform hover:scale-105"
         >
-          <img 
-            src="/lovable-uploads/1d24a55a-4f8d-44f4-91a0-0cf3d0681371.png" 
-            alt="Apricot Labs" 
-            className="h-10" 
+          <img
+            src="/brand/apricot-labs-logo.png"
+            alt="Apricot Labs"
+            className="h-10"
           />
         </a>
       </div>
       
-      {/* April Kot Image - with reduced spacing */}
-      <div className="april-image-container animate-bounce-slight mb-4">
-        <img 
-          src="/lovable-uploads/618e3371-cde8-4060-ba50-51efc3c4d6ba.png" 
-          alt="April Kot" 
-          className="w-full h-full object-contain scale-150"
+      {/* Everything below the logo is centered as one block, so nothing sinks
+          to the bottom of tall screens */}
+      <div className="flex-1 w-full flex flex-col items-center justify-center">
+      <div className="w-72 h-72 sm:w-80 sm:h-80 mx-auto animate-bounce-slight mb-2">
+        <img
+          src={WELCOME_CHARACTER.src}
+          alt={WELCOME_CHARACTER.alt}
+          className="w-full h-full object-contain"
         />
       </div>
 
-      <div className="april-container flex flex-col justify-center mb-6">
+      <div className="april-container flex flex-col justify-center">
         <div className="p-6 bg-card text-card-foreground rounded-lg shadow-sm mb-5 transition-all duration-300 hover:shadow-md text-right">
           <h2 className="text-xl font-bold mb-4 text-center">
             <span className="mr-2">היי, אני אפריל קוט</span>
@@ -90,6 +93,7 @@ const WelcomeScreen: React.FC<WelcomeScreenProps> = ({
           <Sparkles className="h-5 w-5 ml-2" />
           <span>תגרילי לי מקום</span>
         </Button>
+      </div>
       </div>
     </div>
   );

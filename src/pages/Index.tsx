@@ -1,7 +1,7 @@
-
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Restaurant } from '@/types/restaurant';
-import { getAllRestaurants, getRandomRestaurant, getAllCities } from '@/utils/getRandomFromSheet';
+import { getAllRestaurants, getAllCities, pickRestaurant, restaurantKey } from '@/utils/getRandomFromSheet';
+import { LOADING_CHARACTER } from '@/lib/characters';
 import WelcomeScreen from '@/components/WelcomeScreen';
 import AprilCard from '@/components/april-card';
 import { useToast } from "@/components/ui/use-toast";
@@ -12,17 +12,16 @@ const Index = () => {
   const [loading, setLoading] = useState(false);
   const [cities, setCities] = useState<string[]>([]);
   const [selectedCity, setSelectedCity] = useState<string>("all");
-  const [lastSelectedRestaurantId, setLastSelectedRestaurantId] = useState<string | null>(null);
+  // Everything April already suggested this session — she won't repeat
+  // herself until she's run out of places for the chosen city.
+  const shownRef = useRef<Set<string>>(new Set());
   const { toast } = useToast();
 
   useEffect(() => {
     const fetchRestaurants = async () => {
       const data = await getAllRestaurants();
       setRestaurants(data);
-      
-      // Extract cities from restaurant data
-      const cityList = getAllCities(data);
-      setCities(cityList);
+      setCities(getAllCities(data));
     };
 
     fetchRestaurants();
@@ -30,56 +29,34 @@ const Index = () => {
 
   const handleGenerateClick = (city?: string) => {
     setLoading(true);
-    
+
     // Simulate a slight delay for the "shuffle" feeling
     setTimeout(() => {
-      // Filter restaurants by city if needed
-      const filteredRestaurants = city 
-        ? restaurants.filter(restaurant => restaurant.city === city)
-        : restaurants;
-      
-      if (filteredRestaurants.length === 0) {
+      const { restaurant, poolExhausted } = pickRestaurant(restaurants, city, shownRef.current);
+
+      if (!restaurant) {
         toast({
           title: "אופס!",
-          description: city 
-            ? `לא הצלחתי למצוא מסעדה ב${city}. נסי עיר אחרת.` 
+          description: city
+            ? `לא הצלחתי למצוא מסעדה ב${city}. נסי עיר אחרת.`
             : "לא הצלחתי למצוא מסעדה. נסי שוב מאוחר יותר.",
         });
         setLoading(false);
         return;
       }
-      
-      // If there's only one restaurant in the city and it's the same as last time
-      if (filteredRestaurants.length === 1 && 
-          lastSelectedRestaurantId === filteredRestaurants[0].name + filteredRestaurants[0].city) {
-        // Get random restaurant from any city
-        const randomRestaurant = getRandomRestaurant(restaurants);
-        
-        if (randomRestaurant) {
-          toast({
-            title: "רק מקום אחד זמין",
-            description: `אין עוד מקומות ב${city}. מה דעתך על מקום מ${randomRestaurant.city}?`,
-          });
-          setSelectedRestaurant(randomRestaurant);
-          setLastSelectedRestaurantId(randomRestaurant.name + randomRestaurant.city);
-        }
-      } else {
-        // Normal flow - get a random restaurant from filtered list
-        const restaurant = getRandomRestaurant(restaurants, city);
-        
-        if (restaurant) {
-          setSelectedRestaurant(restaurant);
-          setLastSelectedRestaurantId(restaurant.name + restaurant.city);
-        } else {
-          toast({
-            title: "אופס!",
-            description: city 
-              ? `לא הצלחתי למצוא מסעדה ב${city}. נסי עיר אחרת.` 
-              : "לא הצלחתי למצוא מסעדה. נסי שוב מאוחר יותר.",
-          });
-        }
+
+      if (poolExhausted) {
+        shownRef.current.clear();
+        toast({
+          title: "סיבוב שני 🍑",
+          description: city
+            ? `עברנו על כל המקומות ב${city} — מתחילות מהתחלה.`
+            : "עברנו על כל הרשימה — מתחילות מהתחלה.",
+        });
       }
-      
+
+      shownRef.current.add(restaurantKey(restaurant));
+      setSelectedRestaurant(restaurant);
       setLoading(false);
     }, 800);
   };
@@ -93,17 +70,22 @@ const Index = () => {
       <div className="w-full max-w-md relative">
         {loading ? (
           <div className="flex flex-col items-center justify-center p-12 h-screen">
+            <img
+              src={LOADING_CHARACTER.src}
+              alt={LOADING_CHARACTER.alt}
+              className="w-48 h-48 object-contain animate-bounce-slight mb-4"
+            />
             <div className="text-april-fuchsia text-2xl mb-4">מגרילה...</div>
             <div className="w-12 h-12 rounded-full border-4 border-april-fuchsia border-t-transparent animate-spin"></div>
           </div>
         ) : selectedRestaurant ? (
-          <AprilCard 
-            restaurant={selectedRestaurant} 
+          <AprilCard
+            restaurant={selectedRestaurant}
             onTryAgain={() => handleGenerateClick(selectedCity !== 'all' ? selectedCity : undefined)}
             onBack={handleBackClick}
           />
         ) : (
-          <WelcomeScreen 
+          <WelcomeScreen
             onGenerateClick={handleGenerateClick}
             cities={cities}
             selectedCity={selectedCity}

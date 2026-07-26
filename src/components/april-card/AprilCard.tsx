@@ -2,7 +2,6 @@
 import React from 'react';
 import { Restaurant } from '@/types/restaurant';
 import { Card } from "@/components/ui/card";
-import { getCharacterImage } from '@/utils/getRandomFromSheet';
 import AprilHeader from './AprilHeader';
 import CharacterImage from './CharacterImage';
 import RestaurantHeader from './RestaurantHeader';
@@ -20,9 +19,6 @@ interface AprilCardProps {
 }
 
 const AprilCard: React.FC<AprilCardProps> = ({ restaurant, onTryAgain, onBack }) => {
-  // Get character image
-  const characterImage = getCharacterImage(restaurant.character);
-  
   // Get map embed URL
   const mapEmbedUrl = MapHandler({
     mapUrl: restaurant.maps,
@@ -34,16 +30,13 @@ const AprilCard: React.FC<AprilCardProps> = ({ restaurant, onTryAgain, onBack })
   const handleShare = ShareHandler({ restaurant });
 
   return (
-    <div className="flex flex-col min-h-screen py-4 px-4" dir="rtl">
-      {/* Logo header with updated positioning */}
-      <div className="mb-4">
-        <AprilHeader onBack={onBack} />
-      </div>
+    <div className="flex flex-col min-h-screen pt-3 pb-6 px-4" dir="rtl">
+      <AprilHeader onBack={onBack} />
 
       <div className="flex flex-col items-center">
-        {/* Character image with reduced spacing */}
-        <div className="mb-4">
-          <CharacterImage imageSrc={characterImage} />
+        {/* Character image */}
+        <div className="mb-2 mt-1">
+          <CharacterImage imageSrc={restaurant.characterSrc} alt={restaurant.characterAlt} />
         </div>
         
         <Card className="overflow-hidden border-0 rounded-2xl shadow-lg mx-auto bg-white fade-in animate-enter w-full mb-6">

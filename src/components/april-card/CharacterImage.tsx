@@ -1,34 +1,26 @@
-
 import React, { useState } from 'react';
+import { DEFAULT_CHARACTER } from '@/lib/characters';
 
 interface CharacterImageProps {
   imageSrc: string;
+  alt?: string;
 }
 
-const CharacterImage: React.FC<CharacterImageProps> = ({ imageSrc }) => {
+const CharacterImage: React.FC<CharacterImageProps> = ({ imageSrc, alt }) => {
   const [imageError, setImageError] = useState(false);
-  
-  // If no image source or image failed to load, use default
-  if (!imageSrc || imageError) {
-    console.log("Using default character image due to missing src or error");
-    return (
-      <div className="flex justify-center">
-        <img 
-          src="/lovable-uploads/bdcca772-60da-46da-8de8-2b388085ef94.png"
-          alt="April Character Default" 
-          className="w-[400px] h-[400px] object-contain animate-bounce-slight"
-        />
-      </div>
-    );
-  }
+
+  const src = !imageSrc || imageError ? DEFAULT_CHARACTER.src : imageSrc;
+  const altText = !imageSrc || imageError ? DEFAULT_CHARACTER.alt : (alt || "אפריל קוט");
 
   return (
     <div className="flex justify-center">
-      <img 
-        src={imageSrc} 
-        alt="April Character" 
-        className="w-[400px] h-[400px] object-contain animate-bounce-slight"
-        onError={() => setImageError(true)} 
+      <img
+        src={src}
+        alt={altText}
+        width={320}
+        height={320}
+        className="w-56 h-56 sm:w-72 sm:h-72 md:w-80 md:h-80 object-contain animate-bounce-slight"
+        onError={() => setImageError(true)}
       />
     </div>
   );

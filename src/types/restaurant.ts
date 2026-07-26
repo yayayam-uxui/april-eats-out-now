@@ -11,6 +11,8 @@ export interface Restaurant {
   whenToGo: string;
   aprilQuote: string;
   character: string;
+  characterSrc: string;
+  characterAlt: string;
   city: string;
   image?: string;
   wolt?: string;
