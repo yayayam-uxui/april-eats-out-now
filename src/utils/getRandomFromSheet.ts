@@ -1,8 +1,10 @@
 import { Restaurant, Restaurants } from "../types/restaurant";
 import { characterFor } from "../lib/characters";
+import snapshot from "../data/sheet-snapshot.json";
 
 // April's notebook: a public Google Sheet, read through OpenSheet.
 // Every row is a restaurant; columns are in Hebrew, exactly as Yam writes them.
+// If OpenSheet is ever down, the bundled snapshot keeps April on her feet.
 const SHEET_URL = "https://opensheet.elk.sh/1h1IIi8Ns3j8z2VoLs6Hr-3yl58LV3PhevL_qIKNU8SY/1";
 
 // Sheet placeholders that mean "nothing here" (אין / - / empty).
@@ -18,10 +20,16 @@ export async function getAllRestaurants(): Promise<Restaurants> {
     if (!response.ok) {
       throw new Error(`Sheet fetch failed: ${response.status}`);
     }
-    const rawData = await response.json();
+    return mapRows(await response.json());
+  } catch (error) {
+    console.error("Sheet unreachable, serving bundled snapshot:", error);
+    return mapRows(snapshot);
+  }
+}
 
-    // Rows without a name are trailing empties — skip them.
-    const restaurants: Restaurants = rawData
+function mapRows(rawData: any[]): Restaurants {
+  // Rows without a name are trailing empties — skip them.
+  return rawData
       .filter((item: any) => clean(item["שם המקום"]).length > 0)
       .map((item: any) => {
         const category = clean(item["קטגוריה"]);
@@ -64,12 +72,6 @@ export async function getAllRestaurants(): Promise<Restaurants> {
           orderLink: clean(item["לינק להזמנות - לא וולט"]),
         };
       });
-
-    return restaurants;
-  } catch (error) {
-    console.error("Error fetching restaurant data:", error);
-    return [];
-  }
 }
 
 // Sassy defaults for rows where the משפט column is empty.
