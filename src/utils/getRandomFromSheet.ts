@@ -1,11 +1,16 @@
 import { Restaurant, Restaurants } from "../types/restaurant";
 import { characterFor } from "../lib/characters";
-import snapshot from "../data/sheet-snapshot.json";
+import bundled from "../data/restaurants.json";
 
 // April's notebook: a public Google Sheet, read through OpenSheet.
 // Every row is a restaurant; columns are in Hebrew, exactly as Yam writes them.
-// If OpenSheet is ever down, the bundled snapshot keeps April on her feet.
 const SHEET_URL = "https://opensheet.elk.sh/1h1IIi8Ns3j8z2VoLs6Hr-3yl58LV3PhevL_qIKNU8SY/1";
+
+// The bundled dataset (July 2026) is corrected and richer than the sheet:
+// closed places removed, poses/quotes filled, 19 new verified places added.
+// Flip to true AFTER the sheet is synced with this data — then the sheet is
+// the live source again and the bundle becomes the offline fallback.
+const USE_SHEET = false;
 
 // Sheet placeholders that mean "nothing here" (אין / - / empty).
 const clean = (v: unknown): string => {
@@ -15,16 +20,18 @@ const clean = (v: unknown): string => {
 };
 
 export async function getAllRestaurants(): Promise<Restaurants> {
-  try {
-    const response = await fetch(SHEET_URL);
-    if (!response.ok) {
-      throw new Error(`Sheet fetch failed: ${response.status}`);
+  if (USE_SHEET) {
+    try {
+      const response = await fetch(SHEET_URL);
+      if (!response.ok) {
+        throw new Error(`Sheet fetch failed: ${response.status}`);
+      }
+      return mapRows(await response.json());
+    } catch (error) {
+      console.error("Sheet unreachable, serving bundled data:", error);
     }
-    return mapRows(await response.json());
-  } catch (error) {
-    console.error("Sheet unreachable, serving bundled snapshot:", error);
-    return mapRows(snapshot);
   }
+  return mapRows(bundled);
 }
 
 function mapRows(rawData: any[]): Restaurants {

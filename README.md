@@ -6,7 +6,7 @@ one decision, one good meal. Live at
 
 ## How it works
 
-- The content is a **public Google Sheet** ([this one](https://docs.google.com/spreadsheets/d/1h1IIi8Ns3j8z2VoLs6Hr-3yl58LV3PhevL_qIKNU8SY)) read through OpenSheet — no backend, no database. Add a row, the app picks it up in seconds.
+- The data lives in [`src/data/restaurants.json`](src/data/restaurants.json) (65 verified places, July 2026), in the same Hebrew-column format as the **public Google Sheet** ([this one](https://docs.google.com/spreadsheets/d/1h1IIi8Ns3j8z2VoLs6Hr-3yl58LV3PhevL_qIKNU8SY)). Once the sheet is synced with this data, flip `USE_SHEET` in `src/utils/getRandomFromSheet.ts` and the sheet becomes the live source again (bundle stays as offline fallback).
 - Maps are embedded **without any API key** (Google's keyless `output=embed`).
 - The shuffle never repeats a place until it has shown everything in the chosen city.
 
