@@ -20,8 +20,17 @@ function shuffled<T>(arr: T[]): T[] {
   return a;
 }
 
+// April thinks out loud while the reels spin
+const QUIPS = [
+  "רגע, אני חושבת…",
+  "לא… לא… אולי…",
+  "אוי, יש לי רעיון מושלם",
+  "סבלנות, קסם לוקח שנייה 🍑",
+];
+
 const SlotMachine: React.FC<SlotMachineProps> = ({ targetSrc, targetAlt, onDone }) => {
   const [spinning, setSpinning] = useState(false);
+  const [quip, setQuip] = useState(0);
 
   // Build the three strips once per spin: random poses, target pinned last.
   const reels = useMemo(() => {
@@ -39,9 +48,11 @@ const SlotMachine: React.FC<SlotMachineProps> = ({ targetSrc, targetAlt, onDone 
     // Kick the CSS transition one frame after mount
     const start = requestAnimationFrame(() => setSpinning(true));
     const done = setTimeout(onDone, REEL_DURATIONS[REEL_DURATIONS.length - 1] + 600);
+    const talk = setInterval(() => setQuip((q) => Math.min(q + 1, QUIPS.length - 1)), 750);
     return () => {
       cancelAnimationFrame(start);
       clearTimeout(done);
+      clearInterval(talk);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [targetSrc]);
@@ -94,6 +105,9 @@ const SlotMachine: React.FC<SlotMachineProps> = ({ targetSrc, targetAlt, onDone 
       </div>
 
       <div className="font-karantina text-april-navy text-4xl font-bold mt-5 animate-pulse">מגרילה...</div>
+      <div key={quip} className="text-april-teal text-base mt-2 fade-in" aria-live="polite">
+        {QUIPS[quip]}
+      </div>
     </div>
   );
 };
